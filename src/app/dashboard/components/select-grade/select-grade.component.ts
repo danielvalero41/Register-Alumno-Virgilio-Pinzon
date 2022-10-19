@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'select-grade',
@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./select-grade.component.scss'],
 })
 export class SelectGradeComponent implements OnInit {
+  @Output() next = new EventEmitter<any>();
   constructor() {}
 
   ngOnInit(): void {}
+
+  selectGrade(option) {
+    this.next.emit();
+  }
 }

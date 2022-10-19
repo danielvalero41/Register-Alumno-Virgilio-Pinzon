@@ -8,12 +8,26 @@
   <div class="section-grade">
     <div class="mt-5" nz-row nzAlign="middle" nzGutter="28" nzJustify="center">
       <div nz-col class="gutter-row">
-        <button class="btn-grade btn-contrast-color">Sección A</button>
+        <button
+          (click)="selectSection('A')"
+          class="btn-grade btn-contrast-color"
+        >
+          Sección A
+        </button>
       </div>
 
       <div nz-col class="gutter-row">
-        <button class="btn-grade btn-contrast-color">Sección B</button>
+        <button
+          (click)="selectSection('B')"
+          class="btn-grade btn-contrast-color"
+        >
+          Sección B
+        </button>
       </div>
+    </div>
+
+    <div class="mt-5">
+      <p (click)="backStep()" class="link">Regresar</p>
     </div>
   </div>
 </div>

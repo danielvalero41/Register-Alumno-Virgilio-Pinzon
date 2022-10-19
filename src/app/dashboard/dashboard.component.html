@@ -3,9 +3,20 @@
   <nz-layout>
     <nz-content class="content">
       <div class="container">
-        <!-- <select-grade></select-grade> -->
-        <!-- <select-section></select-section> -->
-        <list-students></list-students>
+        <select-grade
+          *ngIf="arraySteps[actualStep] === 'select-grade'"
+          (next)="next()"
+        ></select-grade>
+        <select-section
+          *ngIf="arraySteps[actualStep] === 'select-section'"
+          (next)="next()"
+          (back)="back()"
+        ></select-section>
+        <list-students
+          *ngIf="arraySteps[actualStep] === 'list-students'"
+          (next)="next()"
+          (back)="back()"
+        ></list-students>
       </div>
     </nz-content>
   </nz-layout>

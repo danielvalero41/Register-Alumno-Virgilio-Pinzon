@@ -84,6 +84,12 @@ button {
   font-family: "Montserrat", sans-serif;
 }
 
+.link {
+  color: $primary;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 //Margin
 
 .m-1 {

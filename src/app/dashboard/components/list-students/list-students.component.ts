@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'list-students',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-students.component.scss'],
 })
 export class ListStudentsComponent implements OnInit {
+  @Output() next = new EventEmitter<any>();
+  @Output() back = new EventEmitter<any>();
   formSearch: FormGroup;
   tableHeaders = [];
   rows = [];
@@ -51,5 +53,9 @@ export class ListStudentsComponent implements OnInit {
 
   eventActionEmitter(e) {
     console.log(e);
+  }
+
+  backStep() {
+    this.back.emit();
   }
 }
