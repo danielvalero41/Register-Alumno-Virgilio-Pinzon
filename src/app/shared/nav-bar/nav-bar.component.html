@@ -1,0 +1,17 @@
+<div class="nav-bar">
+  <div class="logo">
+    <p>LOGO</p>
+  </div>
+  <div class="logout">
+    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="login">
+      <i class="fas fa-user-circle"></i>
+    </a>
+    <nz-dropdown-menu #login="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item (click)="logout()" class="option">
+          <i class="far fa-sign-out"></i> Cerrar Sesión
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+</div>

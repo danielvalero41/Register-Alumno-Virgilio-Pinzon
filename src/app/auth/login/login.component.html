@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="container-login">
+    <div class="logo text-center text-primary text-bold text-title">logo</div>
+
+    <form [formGroup]="formLogin">
+      <div nz-row nzAlign="middle">
+        <div nz-col nzSpan="24">
+          <label class="text-bold text-black">Ingrese su correo</label>
+          <input
+            class="mt-1"
+            nz-input
+            nzSize="large"
+            formControlName="user"
+            placeholder="correo electrónico"
+          />
+          <div class="absolute" *ngIf="f.user.invalid && f.user.touched">
+            <small *ngIf="f.user.errors?.required" class="text-danger"
+              >Este campo es obligatorio</small
+            >
+            <small *ngIf="f.user.errors?.pattern" class="text-danger"
+              >Formato de correo inválido (ejemplo@mail.com)</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4" nz-row nzAlign="middle">
+        <div nz-col nzSpan="24">
+          <label class="text-bold text-black">Contraseña</label>
+          <input
+            class="mt-1"
+            nz-input
+            formControlName="password"
+            type="password"
+            nzSize="large"
+            placeholder="Contraseña"
+          />
+          <div
+            class="absolute"
+            *ngIf="f.password.invalid && f.password.touched"
+          >
+            <small *ngIf="f.password.errors?.required" class="text-danger"
+              >Este campo es obligatorio</small
+            >
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="mt-4" nz-row nzAlign="middle" nzJustify="center">
+      <div nz-col>
+        <button
+          [disabled]="!formLogin.valid"
+          (click)="login()"
+          class="btn btn-secondary"
+        >
+          Ingresar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

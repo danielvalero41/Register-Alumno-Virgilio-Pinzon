@@ -1,0 +1,44 @@
+.first {
+  display: none;
+}
+
+.estado {
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 2px 6px;
+}
+
+.icono {
+  font-size: 24px;
+}
+
+.decoration {
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+tr:hover {
+  cursor: pointer;
+}
+
+td {
+  width: 100px;
+}
+
+.container-empty {
+  display: flex;
+  height: calc(397px - 124px);
+  justify-content: center;
+}
+
+.ant-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.styleTable {
+  background-color: #e9ebf2;
+}

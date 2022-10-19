@@ -1,0 +1,37 @@
+<div class="container">
+  <div nz-row nzAlign="middle" nzJustify="center">
+    <div nz-col>
+      <p class="text-black text-bold">Listado de estudiantes</p>
+    </div>
+  </div>
+
+  <form [formGroup]="formSearch">
+    <div nz-row nzAlign="middle" nzJustify="space-between">
+      <div nz-col>
+        <nz-input-group [nzSuffix]="iconSearch">
+          <input
+            type="text"
+            formControlName="search"
+            (keyup.enter)="filterEnter()"
+            nz-input
+            nzSize="large"
+            placeholder="Buscar estudiante"
+          />
+        </nz-input-group>
+        <ng-template #iconSearch>
+          <div class="search-icon">
+            <i class="fas fa-search"></i>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </form>
+
+  <div class="mt-5">
+    <app-table
+      [rows]="rows"
+      [tableHeaders]="tableHeaders"
+      (eventAction)="eventActionEmitter($event)"
+    ></app-table>
+  </div>
+</div>

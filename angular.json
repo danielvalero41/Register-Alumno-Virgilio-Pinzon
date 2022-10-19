@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/theme.less",
               "src/styles.scss"
             ],
             "scripts": []
@@ -123,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "register-alumno-virgilio-pinzon"
+    }
+  },
+  "defaultProject": "register-alumno-virgilio-pinzon",
+  "cli": {
+    "analytics": "4aad1f83-8838-458d-b254-71b9ea0abc5a"
+  }
 }

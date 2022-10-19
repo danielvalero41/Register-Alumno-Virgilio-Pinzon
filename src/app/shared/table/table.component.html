@@ -1,0 +1,82 @@
+<!-- nzFrontPagination="false" VALIDAR LA DATA DEL SERVIDOR PARA PAGINAR 
+ [nzTotal]="total"
+[nzPageIndex]="page" 
+ [nzLoading]="loaded" 
+(nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+  (nzPageIndexChange)="onPageIndexChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)" -->
+<nz-table
+  #rowSelectionTable
+  nzShowSizeChanger
+  [nzData]="rows"
+  nzTableLayout="fixed"
+  [nzShowSizeChanger]="false"
+  [nzSimple]="false"
+  [nzPageSize]="5"
+  [nzFrontPagination]="false"
+  [nzNoResult]="empty"
+>
+  <thead>
+    <tr>
+      <th *ngIf="isCheckbox"></th>
+
+      <th
+        nzEllipsis
+        nzAlign="center"
+        *ngFor="let header of tableHeaders; let i = index"
+      >
+        <p>{{ header.label }}</p>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- (click)="selectedRow(dataRow)" -->
+    <tr
+      *ngFor="let dataRow of rowSelectionTable.data; let i = index"
+      [ngClass]="{ styleTable: i % 2 === 0 }"
+    >
+      <td
+        *ngIf="isCheckbox"
+        [nzChecked]="setOfCheckedId.has(dataRow.id)"
+        (nzCheckedChange)="onItemChecked(dataRow.id, $event, dataRow)"
+      ></td>
+      <td
+        nzAlign="center"
+        *ngFor="let item of dataRow | keyvalue: unsorted; let first = first"
+        [ngClass]="{ first: first }"
+      >
+        <div *ngIf="isObject(item.value)">
+          <div
+            *ngIf="item.value.icono"
+            class="icono"
+            (click)="actionEmit(dataRow)"
+            [ngStyle]="{ color: item.value.color }"
+          >
+            <i [class]="item.value.icono"></i>
+          </div>
+
+          <div *ngIf="!item.value.icono">
+            <div
+              class="estado"
+              [ngStyle]="{
+                color: item.value.color,
+                'background-color': item.value.background
+              }"
+            >
+              <p>{{ item.value.nombre }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="decoration" *ngIf="isObject(item.value) === false">
+          {{ item.value }}
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #empty>
+  <div class="container-empty">
+    <nz-empty></nz-empty>
+  </div>
+</ng-template>

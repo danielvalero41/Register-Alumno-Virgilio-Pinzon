@@ -1,0 +1,19 @@
+@import "/src/variables.scss";
+
+.container {
+  min-height: calc(100vh - 158px);
+  padding: 20px 42px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.footer {
+  background-color: #00172e;
+  color: #fff;
+  font-weight: bold;
+}
+
+.content {
+  background-color: #f0f2f5;
+}

@@ -1,0 +1,23 @@
+@import "/src/variables.scss";
+
+.nav-bar {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: $primary;
+
+  .logo {
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .logout {
+    i {
+      color: #fff;
+      font-size: 24px;
+    }
+  }
+}
