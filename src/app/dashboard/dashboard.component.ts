@@ -9,7 +9,12 @@ export class DashboardComponent implements OnInit {
   arraySteps: string[] = [];
   actualStep: number = 0;
   constructor() {
-    this.arraySteps = ['select-grade', 'select-section', 'list-students'];
+    this.arraySteps = [
+      'select-grade',
+      'select-section',
+      'list-students',
+      'details-students',
+    ];
   }
 
   ngOnInit(): void {}

@@ -17,6 +17,11 @@
           (next)="next()"
           (back)="back()"
         ></list-students>
+
+        <details-students
+          *ngIf="arraySteps[actualStep] === 'details-students'"
+          (back)="back()"
+        ></details-students>
       </div>
     </nz-content>
   </nz-layout>

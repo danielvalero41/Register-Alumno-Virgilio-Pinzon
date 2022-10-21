@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard.component';
 import { SelectGradeComponent } from './components/select-grade/select-grade.component';
 import { SelectSectionComponent } from './components/select-section/select-section.component';
 import { ListStudentsComponent } from './components/list-students/list-students.component';
-import { DetailsStudentComponent } from './components/details-student/details-student.component';
+import { DetailsStudentsComponent } from './components/details-students/details-students.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { DetailsStudentComponent } from './components/details-student/details-st
     SelectGradeComponent,
     SelectSectionComponent,
     ListStudentsComponent,
-    DetailsStudentComponent,
+    DetailsStudentsComponent,
   ],
   imports: [
     CommonModule,

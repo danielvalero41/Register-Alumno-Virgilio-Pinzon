@@ -1,0 +1,421 @@
+<div class="container">
+  <div nz-row nzAlign="top" nzJustify="center">
+    <div nz-col>
+      <p class="text-bold text-primary">Nombre del estudiante</p>
+    </div>
+  </div>
+
+  <form [formGroup]="formDetailsStudent">
+    <nz-tabset [nzCentered]="true">
+      <nz-tab nzTitle="Datos del estudiante">
+        <div nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Apellidos</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="apellido"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Nombres</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="nombre"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="2" class="gutter-row">
+            <label>Tipo</label>
+            <nz-select
+              nzSize="large"
+              nzPlaceHolder=""
+              formControlName="tipoCedula"
+            >
+              <nz-option nzValue="V" nzLabel="V"> </nz-option>
+              <nz-option nzValue="E" nzLabel="E"> </nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="4" class="gutter-row">
+            <label>Cedula</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="cedula"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Grupo sanguineo</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="grupoSanguineo"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Lugar de nacimiento</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="lugarNacimiento"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Fecha de nacimiento</label>
+            <div>
+              <nz-date-picker
+                [nzInputReadOnly]="true"
+                formControlName="fechaNacimiento"
+                [nzDisabledDate]="disabledDate"
+                [nzFormat]="'dd/MM/yyyy'"
+                class="w-100"
+                nzSize="large"
+                (ngModelChange)="getDate($event)"
+                (nzOnOpenChange)="detectedDate($event)"
+              ></nz-date-picker>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="2" class="gutter-row">
+            <label>Sexo</label>
+            <nz-select nzSize="large" nzPlaceHolder="" formControlName="sexo">
+              <nz-option nzValue="Masculino" nzLabel="M"> </nz-option>
+              <nz-option nzValue="Femenino" nzLabel="F"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="4" class="gutter-row">
+            <label>Edad</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="edad"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Dirección de habitación</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="direccionHabitacion"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Parroquia</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="parroquia"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Municipio</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="municipio"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Pais</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="pais"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Estado de nacimiento</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="estadoNacimiento"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Telefono residencial</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="telefonoResidencial"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Correo electronico</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="correo"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="2" class="gutter-row">
+            <label>¿Canaima?</label>
+            <nz-select
+              nzSize="large"
+              nzPlaceHolder=""
+              formControlName="poseeCanaima"
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="4" class="gutter-row">
+            <label>Serial</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="serialCanaima"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Nuevo ingreso</label>
+            <nz-select
+              nzSize="large"
+              formControlName="nuevoIngreso"
+              nzPlaceHolder=""
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Institución de procedencia</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="institucionProcedencia"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label
+              >Si el estudiante vive fuera del sector, especifque por qué decide
+              inscribirlo en este plantel</label
+            >
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="razonInscripcion"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Grado a cursar</label>
+            <nz-select
+              nzSize="large"
+              nzPlaceHolder=""
+              formControlName="gradoCursar"
+            >
+              <nz-option nzValue="1" nzLabel="1"> </nz-option>
+              <nz-option nzValue="2" nzLabel="2"> </nz-option>
+              <nz-option nzValue="3" nzLabel="3"> </nz-option>
+              <nz-option nzValue="4" nzLabel="4"> </nz-option>
+              <nz-option nzValue="5" nzLabel="5"> </nz-option>
+              <nz-option nzValue="6" nzLabel="6"> </nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Repitiente</label>
+            <nz-select
+              nzSize="large"
+              formControlName="repitiente"
+              nzPlaceHolder=""
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Regular</label>
+            <nz-select
+              nzSize="large"
+              formControlName="regular"
+              nzPlaceHolder=""
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Talla de camisa</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="tallaCamisa"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Estatura</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="estatura"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Peso</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="peso"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Talla del Pantalón</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="tallaPantalon"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Calzado</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="calzado"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>En caso emergencia recurrir a</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="nombreEmergencia"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Parentesco</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="parentesco"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono de residencia</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="telefonoResidencial"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono celular</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="telefonoCelular"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿Tiene hermanos?</label>
+            <nz-select
+              nzSize="large"
+              formControlName="poseeHermanos"
+              nzPlaceHolder=""
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿Cuantos?</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="cantidadHermanos"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Grado que cursan(s)</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="gradoCursan"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listGrados"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+            <ng-template #tagPlaceHolder let-selectedList
+              >and {{ selectedList.length }} more selected</ng-template
+            >
+          </div>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="Aspectos sociales">Content of Tab Pane 2</nz-tab>
+      <nz-tab nzTitle="Identificación de los padres"
+        >Content of Tab Pane 3</nz-tab
+      >
+      <nz-tab nzTitle="Aspectos de Salud">Content of Tab Pane 3</nz-tab>
+      <nz-tab nzTitle="Datos del representante legal"
+        >Content of Tab Pane 3</nz-tab
+      >
+    </nz-tabset>
+  </form>
+</div>

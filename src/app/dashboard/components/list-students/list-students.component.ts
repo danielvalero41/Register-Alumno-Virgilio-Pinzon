@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
@@ -12,7 +13,7 @@ export class ListStudentsComponent implements OnInit {
   formSearch: FormGroup;
   tableHeaders = [];
   rows = [];
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, public route: Router) {
     this.formSearch = this.fb.group({
       search: [''],
     });
@@ -52,7 +53,7 @@ export class ListStudentsComponent implements OnInit {
   filterEnter() {}
 
   eventActionEmitter(e) {
-    console.log(e);
+    this.next.emit();
   }
 
   backStep() {

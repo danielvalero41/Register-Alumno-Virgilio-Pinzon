@@ -1,0 +1,9 @@
+@import "/src/variables.scss";
+
+::ng-deep.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: $primary;
+  font-weight: 500;
+}
+.w-100 {
+  width: 100%;
+}

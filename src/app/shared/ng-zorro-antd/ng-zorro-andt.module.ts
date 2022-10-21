@@ -8,6 +8,8 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @NgModule({
   declarations: [],
@@ -21,6 +23,8 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
     NzLayoutModule,
     NzDropDownModule,
     NzEmptyModule,
+    NzTabsModule,
+    NzDatePickerModule,
   ],
 })
 export class NgZorroAndtModule {}
