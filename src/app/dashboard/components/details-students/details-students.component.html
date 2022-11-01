@@ -1,5 +1,5 @@
 <div class="container">
-  <div nz-row nzAlign="top" nzJustify="center">
+  <div class="mb-5" nz-row nzAlign="top" nzJustify="center">
     <div nz-col>
       <p class="text-bold text-primary">Nombre del estudiante</p>
     </div>
@@ -402,20 +402,1700 @@
               >
               </nz-option>
             </nz-select>
-            <ng-template #tagPlaceHolder let-selectedList
-              >and {{ selectedList.length }} more selected</ng-template
-            >
           </div>
         </div>
       </nz-tab>
-      <nz-tab nzTitle="Aspectos sociales">Content of Tab Pane 2</nz-tab>
-      <nz-tab nzTitle="Identificación de los padres"
-        >Content of Tab Pane 3</nz-tab
-      >
-      <nz-tab nzTitle="Aspectos de Salud">Content of Tab Pane 3</nz-tab>
-      <nz-tab nzTitle="Datos del representante legal"
-        >Content of Tab Pane 3</nz-tab
-      >
+      <nz-tab nzTitle="Aspectos sociales">
+        <div nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <p>¿Con quien vive el niño?</p>
+            <label nz-checkbox formControlName="mama">Mamá</label>
+            <label nz-checkbox formControlName="papa">Papá</label>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Otros</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="otros"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Total de personas que viven en el hogar</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="totalPersona"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Numero de hermanos</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="numeroHermanos"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div nz-row class="mt-3" nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Lugar que ocupa el niño con a sus hermanos</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="lugarOcupaNino"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Describa la relación con sus hermanos</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="descripcionRelacion"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Vive con otros familiares</label>
+            <nz-select
+              nzSize="large"
+              formControlName="viven"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿Quienes?</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="vivenParentesco"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listParentesco"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div nz-row class="mt-3" nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="24" class="gutter-row">
+            <label>Describa cómo es la relación con ellos</label>
+            <textarea
+              nz-input
+              formControlName="descripcionRelacionOtros"
+              [nzAutosize]="{ minRows: 3 }"
+              placeholder=""
+            ></textarea>
+          </div>
+        </div>
+
+        <div nz-row class="mt-3" nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label> Despues de clase ¿con quien se queda? </label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="personaPostClases"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿Quien lo acompaña en las tareas?</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="acompananteTareas"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Deporte que practica</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="deportesPractica"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listDeporte"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label> Horario </label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="horarioPractica"
+              placeholder=""
+            />
+          </div>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="Identificación de los padres">
+        <div nz-row nzAlign="top" nzJustify="center">
+          <div nz-col>
+            <p class="text-primary text-underline">DATOS DE LA MADRE</p>
+          </div>
+        </div>
+
+        <div class="mt-5" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col class="gutter-row" nzSpan="6">
+            <label>Apellidos</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="apellidosMadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col class="gutter-row" nzSpan="6">
+            <label>Nombres</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="nombresMadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col class="gutter-row" nzSpan="2">
+            <label>Tipo</label>
+            <nz-select
+              nzSize="large"
+              formControlName="tipoCedulaMadre"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option nzValue="V" nzLabel="V"> </nz-option>
+              <nz-option nzValue="E" nzLabel="E"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col class="gutter-row" nzSpan="4">
+            <label>Cedula</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="cedulaMadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col class="gutter-row" nzSpan="6">
+            <label>Fecha de nacimiento</label>
+            <div>
+              <nz-date-picker
+                [nzInputReadOnly]="true"
+                formControlName="fechaNacimientoMadre"
+                [nzDisabledDate]="disabledDate"
+                [nzFormat]="'dd/MM/yyyy'"
+                class="w-100"
+                nzSize="large"
+                (ngModelChange)="getDateMadre($event)"
+                (nzOnOpenChange)="detectedDateMadre($event)"
+              ></nz-date-picker>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Edad</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="edadMadre"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Lugar de nacimiento</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="lugarNacimientoMadre"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Estado civil</label>
+            <nz-select
+              formControlName="estadoCivilMadre"
+              nzPlaceHolder=""
+              nzSize="large"
+              nzAllowClear
+            >
+              <nz-option
+                *ngFor="let item of listEstadoCivil"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Ingreso económico</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="ingresoEconomicoMadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono residencial</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="telResidencialMadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono celular</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="telCelularMadre"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Profesión u Oficio</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="profesionMadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Lugar de trabajo</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="lugarTrabajoMadre"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono del trabajo</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="telefonoTrabajoMadre"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="24" class="gutter-row">
+            <label>Dirección de habitación</label>
+            <textarea
+              nz-input
+              nzSize="large"
+              formControlName="direccionHabitacionMadre"
+              [nzAutosize]="{ minRows: 3 }"
+              placeholder=""
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Enfermedades padecidas</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="enfermedadesPadecidasMadre"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listEnfermedades"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Vive con el niño</label>
+            <nz-select
+              nzSize="large"
+              formControlName="viveNinoMadre"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"></nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"></nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Grado de instrucción</label>
+            <nz-select
+              nzSize="large"
+              formControlName="gradoInstruccionMadre"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option
+                *ngFor="let item of listGradoInstruccion"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Tenencia de vivienda</label>
+            <nz-select
+              nzSize="large"
+              formControlName="viviendaTenencia"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option
+                *ngFor="let item of listTenencia"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Tipo de vivienda</label>
+            <nz-select
+              nzSize="large"
+              formControlName="viviendaTipo"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option
+                *ngFor="let item of listTipoVivienda"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>A que religion o creencia pertenece</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="religionMadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Actividades que realiza</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="actividadesReligionMadre"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listActividadesReligion"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Disfruta de alguna misión social</label>
+            <nz-select
+              nzSize="large"
+              formControlName="misionSocialPosee"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Cual</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="misionSocialDescripcion"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Correo</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="correoMadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Describa la relación del niño con la madre</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="relacionMadreNino"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-5" nz-row nzAlign="top" nzJustify="center">
+          <div nz-col>
+            <p class="text-primary text-underline">DATOS DEL PADRE</p>
+          </div>
+        </div>
+
+        <div class="mt-5" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col class="gutter-row" nzSpan="6">
+            <label>Apellidos</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="apellidosPadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col class="gutter-row" nzSpan="6">
+            <label>Nombres</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="nombresPadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col class="gutter-row" nzSpan="2">
+            <label>Tipo</label>
+            <nz-select
+              nzSize="large"
+              formControlName="tipoCedulaPadre"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option nzValue="V" nzLabel="V"> </nz-option>
+              <nz-option nzValue="E" nzLabel="E"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col class="gutter-row" nzSpan="4">
+            <label>Cedula</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="cedulaPadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col class="gutter-row" nzSpan="6">
+            <label>Fecha de nacimiento</label>
+            <div>
+              <nz-date-picker
+                [nzInputReadOnly]="true"
+                formControlName="fechaNacimientoPadre"
+                [nzDisabledDate]="disabledDate"
+                [nzFormat]="'dd/MM/yyyy'"
+                class="w-100"
+                nzSize="large"
+                (ngModelChange)="getDatePadre($event)"
+                (nzOnOpenChange)="detectedDatePadre($event)"
+              ></nz-date-picker>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Estado civil</label>
+            <nz-select
+              nzSize="large"
+              formControlName="estadoCivilPadre"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option
+                *ngFor="let item of listEstadoCivil"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Lugar de Naciemiento</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="lugarNacimientoPadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Profesión u oficio</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="profesionPadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Edad</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="edadPadre"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Ingreso económico</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="ingresoEconomicoPadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono residencial</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="telResidencialPadre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono celular</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="telCelularPadre"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Lugar de trabajo</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="lugarTrabajoPadre"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono del trabajo</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="telefonoTrabajoPadre"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Enfermedades padecidas</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="enfermedadesPadecidasPadre"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listEnfermedades"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Correo</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="correoPadre"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Vive con el niño</label>
+            <nz-select
+              nzSize="large"
+              formControlName="viveNinoPadre"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"></nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"></nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Grado de instrucción</label>
+            <nz-select
+              nzSize="large"
+              formControlName="gradoInstruccionPadre"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option
+                *ngFor="let item of listGradoInstruccion"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Describa la relación del niño con el padre</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="relacionPadreNino"
+              placeholder=""
+            />
+          </div>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="Aspectos de Salud">
+        <div nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Enfermedades de la madre durante el embarazo</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="enfermedadesEmbarazo"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listEnfermedadesEmbarazo"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Antecedentes perinatales ¿Cómo fue el parto?</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="antecedentesPerinatales"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listAntecedentesPerinatales"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Antecedentes postanatales del niño(a)</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="antecedentesPostNatales"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label
+              >¿Qué problemas presento en sus primeros dias al nacer?</label
+            >
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="problemasNacimiento"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Peso al nacer</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="pesoNacimiento"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Talla al nacer</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="tallaNacimiento"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Lloró al nacer</label>
+            <nz-select
+              nzSize="large"
+              formControlName="lloroNacer"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿Gateó?</label>
+            <nz-select
+              nzSize="large"
+              formControlName="gatearGateo"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿A que edad ?</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="gatearEdad"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿A que edad caminó?</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="edadCaminar"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top">
+          <div nz-col>
+            <label
+              >Actualmente tiene algún familiar con discapacidad u otro problema
+              de salud</label
+            >
+          </div>
+        </div>
+
+        <div class="mt-1" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿Posee alguno?</label>
+            <nz-select
+              nzSize="large"
+              formControlName="familiarDiscapacidadPosee"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Especifique</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="familiarDiscapacidadDescripcion"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Enfermedades que padeció el niño(a)</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="enfermedadesNino"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listEnfermedadesNino"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Vacunas recibidas</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="vacunasRecibidas"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listEnfermedadesNino"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-5" nz-row nzAlign="top" nzJustify="center">
+          <div nz-col>
+            <p class="text-primary text-underline">
+              HABITOS ALIMENTICIOS DEL NIÑO(A)
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿Consume todo tipo de alimento?</label>
+            <nz-select
+              nzSize="large"
+              formControlName="alimentosComeTodo"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Si no es asi, especifique ¿cuales y por que?</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="alimentosTipo"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="2" class="gutter-row">
+            <label>¿Alergico?</label>
+            <nz-select
+              nzSize="large"
+              formControlName="alergiaPosee"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="4" class="gutter-row">
+            <label>A qué es alergico</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="alergiaDescripcion"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Alergico a cuales alimentos</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="alergiaAlimentos"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top">
+          <div nz-col nzSpan="24">
+            <label>Sufre de alguna enfermedad o condición especial</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="condicionEspecial"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Usa lentes recetados</label>
+            <nz-select
+              nzSize="large"
+              formControlName="objetosRecetadosLentes"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Zapatos ortopédicos</label>
+            <nz-select
+              nzSize="large"
+              formControlName="objetosRecetadosZapatos"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Otros</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="objetosRecetadosOtros"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Recibe tratamiento</label>
+            <nz-select
+              nzSize="large"
+              formControlName="tratamientoRecibe"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Nombre</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="tratamientoNombre"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Motivo</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="tratamientoMotivo"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Médico tratante</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="tratamientoMedico"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Especialidad</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="tratamientoEspecialidad"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Fecha de inicio de tratamiento</label>
+            <div>
+              <nz-date-picker
+                [nzInputReadOnly]="true"
+                formControlName="tratamientoFecha"
+                [nzDisabledDate]="disabledDate"
+                [nzFormat]="'dd/MM/yyyy'"
+                class="w-100"
+                nzSize="large"
+                (ngModelChange)="getDateTratamiento($event)"
+                (nzOnOpenChange)="detectedDateTratamiento($event)"
+              ></nz-date-picker>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>El niño esta asegurado</label>
+            <nz-select
+              nzSize="large"
+              formControlName="aseguradoSeguro"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Tipo de seguro</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="aseguradoTipo"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listTipoSeguro"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-5" nz-row nzAlign="top" nzJustify="center">
+          <div nz-col>
+            <p class="text-primary text-underline">
+              DESARROLLO LENGUAJE Y MOTOR
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>A que edad comenzo a hablar</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="desarrolloLenguajeEdadHablo"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Duerme bien</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="desarrolloLenguajeDuermeBien"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Se altera fácilmente</label>
+            <nz-select
+              nzSize="large"
+              formControlName="desarrolloLenguajeAlteraFacil"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Mano que usa frecuentemente</label>
+            <nz-select
+              nzSize="large"
+              formControlName="desarrolloLenguajeManoTrabaja"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="'Derecha'" nzLabel="Derecha"> </nz-option>
+              <nz-option [nzValue]="'Izquierda'" nzLabel="Izquierda">
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top">
+          <div nz-col nzSpan="12">
+            <label>Necesidades y/o compromisos</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="necesidadesCompromiso"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listTipoSeguro"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="Datos del representante legal">
+        <div nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Apellidos</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalApellidos"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Nombres</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalNombre"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="2" class="gutter-row">
+            <label>Tipo</label>
+            <nz-select
+              nzSize="large"
+              formControlName="representanteLegalTipo"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="'V'" nzLabel="V"> </nz-option>
+              <nz-option [nzValue]="'E'" nzLabel="E"> </nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="4" class="gutter-row">
+            <label>Cedula</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalCedula"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Fecha de nacimiento</label>
+            <div>
+              <nz-date-picker
+                [nzInputReadOnly]="true"
+                formControlName="representanteLegalFechaNacimiento"
+                [nzDisabledDate]="disabledDate"
+                [nzFormat]="'dd/MM/yyyy'"
+                class="w-100"
+                nzSize="large"
+                (ngModelChange)="getDateRepLegal($event)"
+                (nzOnOpenChange)="detectedDateRepLegal($event)"
+              ></nz-date-picker>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Edad</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalEdad"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Parentesco</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalParentesco"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Lugar de nacimiento</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalLugarNacimiento"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Profesión u oficio</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalProfesion"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Correo electrónico</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalCorreo"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Estado civil</label>
+            <nz-select
+              nzSize="large"
+              formControlName="representanteLegalEstadoCivil"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option
+                *ngFor="let item of listEstadoCivil"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Ingreso económico</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalIngresoEconomico"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Dirección de habitación</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalDireccionHabitacion"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6">
+            <label>Vive con el niño actualmente</label>
+            <nz-select
+              nzSize="large"
+              formControlName="representanteLegalViveConNino"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono casa</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalTelCasa"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono celular</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalTelCelular"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Lugar de trabajo</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalLugarTrabajo"
+              placeholder=""
+            />
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Teléfono</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalTelTrabajo"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top">
+          <div nz-col nzSpan="24">
+            <label>¿Por qué lo representa?</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="representanteLegalRazonRepresenta"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top">
+          <div nz-col nzSpan="24">
+            <label>El niño es independiente en las actividades de</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="actividadesIndependientes"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listActividades"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top">
+          <div nz-col nzSpan="12">
+            <label
+              >Quien cuida el niño(a) durante el tiempo que permanece en el
+              hogar</label
+            >
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="personaCuidaNinoHogar"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Que le gusta más al niño(a)</label>
+            <nz-select
+              nzSize="large"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              formControlName="gustosNino"
+              nzPlaceHolder=""
+            >
+              <nz-option
+                *ngFor="let item of listGustosNino"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>Cuántas horas le dedica</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="gustosNinoHoras"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>El niño(a) se retir solo de la institución</label>
+            <nz-select
+              nzSize="large"
+              formControlName="retiraSoloInstitucion"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>¿Por que?</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="retiraSoloInstitucionRazon"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label
+              >Quien será el responsable de traer y retirar al niño de la
+              institución</label
+            >
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="responsableRetiroNombre"
+              placeholder=""
+            />
+          </div>
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Cédula de identidad</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="responsableRetiroCedula"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label
+              >Medio de transporte que utiliza el niño(a) para ir a la
+              escula</label
+            >
+            <nz-select
+              nzSize="large"
+              formControlName="transporteEscuelaMedio"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option
+                *ngFor="let item of listTransporte"
+                [nzLabel]="item.label"
+                [nzValue]="item.value"
+              >
+              </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Via</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="transporteEscuelaVia"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <!-- TERMINAR EL FORMULARIO Y LUEGO AGREGAR LOS FORMCONTROLS EN EL TS -->
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>El niño(a) ha reprobado en algun grado</label>
+            <nz-select
+              nzSize="large"
+              formControlName="gradoReprobado"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="6" class="gutter-row">
+            <label>¿Cual?</label>
+            <input
+              nz-input
+              nzSize="large"
+              formControlName="gradoReprobadoGrado"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>¿Hace cumplir las normas en el hogar?</label>
+            <nz-select
+              nzSize="large"
+              formControlName="cumpleNormasHogar"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="12" class="gutter-row">
+            <label>Firmo usted el acta compromiso de su representado</label>
+            <nz-select
+              nzSize="large"
+              formControlName="firmaActaCompromiso"
+              nzPlaceHolder=""
+              nzAllowClear
+            >
+              <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
+              <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
+            </nz-select>
+          </div>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="Control de Inscripción">Content of Tab Pane 3</nz-tab>
+
+      <nz-tab nzTitle="Actualización de datos">Content of Tab Pane 3</nz-tab>
+
+      <nz-tab nzTitle="Control de Retiro">Content of Tab Pane 3</nz-tab>
     </nz-tabset>
   </form>
 </div>
+
+<!-- TEMPLATES -->
+
+<ng-template #tagPlaceHolder let-selectedList
+  >y {{ selectedList.length }} opciones seleccionada</ng-template
+>

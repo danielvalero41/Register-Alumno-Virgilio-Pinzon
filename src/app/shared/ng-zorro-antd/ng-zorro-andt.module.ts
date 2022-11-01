@@ -10,6 +10,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
     NzEmptyModule,
     NzTabsModule,
     NzDatePickerModule,
+    NzCheckboxModule,
   ],
 })
 export class NgZorroAndtModule {}

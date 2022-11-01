@@ -213,6 +213,7 @@ export interface Madre {
   apellido: string; //String
   nombre: string; // String
   cedula: Cedula;
+  edad: string;
   fechaNacimiento: string; // Date
   estadoCivil: string; // String
   lugarNacimiento: string; // String
