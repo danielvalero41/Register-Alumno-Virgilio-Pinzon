@@ -33,6 +33,9 @@ export class DetailsStudentsComponent implements OnInit {
   listActividades = [];
   listGustosNino = [];
   listTransporte = [];
+
+  tableHeaders = [];
+
   today = new Date();
 
   constructor(public fb: FormBuilder, public datePipe: DatePipe) {
@@ -202,6 +205,13 @@ export class DetailsStudentsComponent implements OnInit {
       cumpleNormasHogar: [''],
       firmaActaCompromiso: [''],
     });
+
+    this.tableHeaders = [
+      'Grado',
+      'Año Escolar',
+      'Fecha de Inscripción',
+      'Nombre y Apellido del Docente',
+    ];
 
     this.listTransporte = [
       {

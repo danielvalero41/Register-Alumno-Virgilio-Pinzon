@@ -11,6 +11,7 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   declarations: [],
@@ -27,6 +28,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzTabsModule,
     NzDatePickerModule,
     NzCheckboxModule,
+    NzPopconfirmModule,
   ],
 })
 export class NgZorroAndtModule {}
