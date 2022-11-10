@@ -33,7 +33,8 @@ export class DetailsStudentsComponent implements OnInit {
   listActividades = [];
   listGustosNino = [];
   listTransporte = [];
-
+  listEstudiantes = [];
+  controlInscripcion = [];
   tableHeaders = [];
 
   today = new Date();
@@ -213,22 +214,32 @@ export class DetailsStudentsComponent implements OnInit {
       'Nombre y Apellido del Docente',
     ];
 
+    for (let i = 0; i < 5; i++) {
+      this.listEstudiantes.push({
+        id: i,
+        grado: '1',
+        anoEscolar: '2023-2024',
+        fechaInscripcion: '2023/09/16',
+        nombre: 'Petra Perez',
+      });
+    }
+
     this.listTransporte = [
       {
         label: 'Privado',
         value: 'Privado',
       },
       {
-        label: 'Privado',
-        value: 'Privado',
+        label: 'Publico',
+        value: 'Publico',
       },
       {
-        label: 'Privado',
-        value: 'Privado',
+        label: 'Transporte Escolar',
+        value: 'Transporte Escolar',
       },
       {
-        label: 'Privado',
-        value: 'Privado',
+        label: 'Caminando',
+        value: 'Caminando',
       },
     ];
 
@@ -720,5 +731,22 @@ export class DetailsStudentsComponent implements OnInit {
       age--;
     }
     return age;
+  }
+
+  recivedData(data) {
+    this.controlInscripcion = [];
+
+    data.forEach((element) => {
+      let nombre = element.nombre.split(' ');
+      this.controlInscripcion.push({
+        grado: element.grado,
+        anhoEscolar: element.anoEscolar,
+        fechaInscripcion: element.fechaInscripcion,
+        docente: {
+          nombre: nombre[0],
+          apellido: nombre[1],
+        },
+      });
+    });
   }
 }

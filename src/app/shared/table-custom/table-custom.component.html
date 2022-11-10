@@ -23,18 +23,66 @@
             [hidden]="editId === data.id"
             (click)="startEdit(data.id)"
           >
-            {{ data.name }}
+            {{ data.grado }}
           </div>
           <input
             [hidden]="editId !== data.id"
             type="text"
             nz-input
-            [(ngModel)]="data.name"
+            maxlength="1"
+            [(ngModel)]="data.grado"
+            (blur)="stopEdit()"
+            onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
+          />
+        </td>
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.anoEscolar }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.anoEscolar"
             (blur)="stopEdit()"
           />
         </td>
-        <td>{{ data.age }}</td>
-        <td>{{ data.address }}</td>
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.fechaInscripcion }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.fechaInscripcion"
+            (blur)="stopEdit()"
+          />
+        </td>
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.nombre }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.nombre"
+            (blur)="stopEdit()"
+          />
+        </td>
         <td>
           <a
             nz-popconfirm

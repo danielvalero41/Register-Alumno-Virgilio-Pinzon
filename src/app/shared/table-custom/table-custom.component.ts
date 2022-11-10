@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'table-custom',
@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TableCustomComponent implements OnInit {
   @Input() listOfData = [];
   @Input() tableHeaders = [];
+  @Output() sendData = new EventEmitter<any>();
   constructor() {}
   i = 0;
   editId: string | null = null;
@@ -18,16 +19,18 @@ export class TableCustomComponent implements OnInit {
 
   stopEdit(): void {
     this.editId = null;
+    console.log(this.listOfData);
+    this.sendData.emit(this.listOfData);
   }
 
   addRow(): void {
     this.listOfData = [
       ...this.listOfData,
       {
-        id: `${this.i}`,
-        name: `Edward King ${this.i}`,
-        age: '32',
-        address: `London, Park Lane no. ${this.i}`,
+        grado: 'Ingrese el grado',
+        anoEscolar: 'Ingrese el año escolar',
+        fechaInscripcion: 'Ingrese la fecha de inscripción',
+        nombre: 'Ingrese el nombre del docente',
       },
     ];
     this.i++;
@@ -38,7 +41,9 @@ export class TableCustomComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addRow();
-    this.addRow();
+    // this.addRow();
+    // this.addRow();
   }
+
+  unsorted() {}
 }

@@ -2087,7 +2087,11 @@
       </nz-tab>
       <nz-tab nzTitle="Control de Inscripción">
         <div class="mt-5">
-          <table-custom [tableHeaders]="tableHeaders"></table-custom>
+          <table-custom
+            (sendData)="recivedData($event)"
+            [tableHeaders]="tableHeaders"
+            [listOfData]="listEstudiantes"
+          ></table-custom>
         </div>
       </nz-tab>
 
