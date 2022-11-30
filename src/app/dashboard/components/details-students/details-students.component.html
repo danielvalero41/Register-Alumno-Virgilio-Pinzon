@@ -2095,7 +2095,16 @@
         </div>
       </nz-tab>
 
-      <nz-tab nzTitle="Actualización de datos">Content of Tab Pane 3</nz-tab>
+      <nz-tab nzTitle="Actualización de datos">
+        <div class="mt-5">
+          <table-update-data
+            (sendData)="recivedUpdateData($event)"
+            [tableHeaders]="tableHeadersUpdateData"
+            [listOfData]="listUpdateData"
+          >
+          </table-update-data>
+        </div>
+      </nz-tab>
 
       <nz-tab nzTitle="Control de Retiro">Content of Tab Pane 3</nz-tab>
     </nz-tabset>

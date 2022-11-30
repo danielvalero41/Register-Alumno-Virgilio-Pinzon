@@ -34,8 +34,11 @@ export class DetailsStudentsComponent implements OnInit {
   listGustosNino = [];
   listTransporte = [];
   listEstudiantes = [];
+  listUpdateData = [];
   controlInscripcion = [];
   tableHeaders = [];
+  tableHeadersUpdateData = [];
+  actualizacionDatos = [];
 
   today = new Date();
 
@@ -214,6 +217,17 @@ export class DetailsStudentsComponent implements OnInit {
       'Nombre y Apellido del Docente',
     ];
 
+    //INVERTIR LOS HEADERS
+
+    this.tableHeadersUpdateData = [
+      'Grado',
+      'Estatura',
+      'Peso',
+      'Calzado',
+      'Talla Camisa',
+      'Talla Pantalon',
+    ];
+
     for (let i = 0; i < 5; i++) {
       this.listEstudiantes.push({
         id: i,
@@ -223,6 +237,63 @@ export class DetailsStudentsComponent implements OnInit {
         nombre: 'Petra Perez',
       });
     }
+
+    this.listUpdateData = [
+      {
+        id: 0,
+        grado: '1°',
+        estatura: '',
+        peso: '',
+        calzado: '',
+        tallaCamisa: '',
+        tallaPantalon: '',
+      },
+      {
+        id: 1,
+        grado: '2°',
+        estatura: '',
+        peso: '',
+        calzado: '',
+        tallaCamisa: '',
+        tallaPantalon: '',
+      },
+      {
+        id: 2,
+        grado: '3°',
+        estatura: '',
+        peso: '',
+        calzado: '',
+        tallaCamisa: '',
+        tallaPantalon: '',
+      },
+      {
+        id: 3,
+        grado: '4°',
+        estatura: '',
+        peso: '',
+        calzado: '',
+        tallaCamisa: '',
+        tallaPantalon: '',
+      },
+      {
+        id: 4,
+        grado: '5°',
+        estatura: '',
+        peso: '',
+        calzado: '',
+        tallaCamisa: '',
+        tallaPantalon: '',
+      },
+      {
+        id: 5,
+        grado: '6°',
+        estatura: '',
+        peso: '',
+        calzado: '',
+        tallaCamisa: '',
+        tallaPantalon: '',
+      },
+    ];
 
     this.listTransporte = [
       {
@@ -748,5 +819,26 @@ export class DetailsStudentsComponent implements OnInit {
         },
       });
     });
+  }
+
+  recivedUpdateData(data) {
+    this.actualizacionDatos = [];
+
+    data.forEach((element) => {
+      let grado = element.grado.replace('°', '');
+      this.actualizacionDatos.push({
+        grado: grado,
+        estatura: parseInt(element.estatura)
+          ? parseInt(element.estatura)
+          : null,
+        peso: parseInt(element.peso) ? parseInt(element.peso) : null,
+        calzado: parseInt(element.calzado) ? parseInt(element.calzado) : null,
+        tallaCamisa: element.tallaCamisa ? element.tallaCamisa : null,
+        tallaPantalon: parseInt(element.tallaPantalon)
+          ? parseInt(element.tallaPantalon)
+          : null,
+      });
+    });
+    console.log('Actualizar datos:', this.actualizacionDatos);
   }
 }

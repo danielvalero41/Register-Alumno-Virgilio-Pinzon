@@ -9,9 +9,9 @@ export class TableCustomComponent implements OnInit {
   @Input() listOfData = [];
   @Input() tableHeaders = [];
   @Output() sendData = new EventEmitter<any>();
-  constructor() {}
   i = 0;
   editId: string | null = null;
+  constructor() {}
 
   startEdit(id: string): void {
     this.editId = id;

@@ -1,0 +1,85 @@
+<div class="mt-5">
+  <nz-table #editRowTable nzBordered [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th *ngFor="let item of tableHeaders">{{ item }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of editRowTable.data" class="editable-row">
+        <td>
+          {{ data.grado }}
+        </td>
+        <td>
+          <input
+            type="text"
+            nz-input
+            (click)="startEdit(data.id)"
+            [(ngModel)]="data.estatura"
+            (input)="detetedEstatura($event.target.value, data.id)"
+            (blur)="stopEdit()"
+          />
+          <div class="absolute" *ngIf="validEstatura && data.id === idError">
+            <small class="text-danger"
+              >Valor mínimo debe ser 0.5 y máximo 2</small
+            >
+          </div>
+        </td>
+        <td>
+          <input
+            type="text"
+            nz-input
+            (click)="startEdit(data.id)"
+            (input)="detetedPeso($event.target.value, data.id)"
+            [(ngModel)]="data.peso"
+            (blur)="stopEdit()"
+          />
+          <div class="absolute" *ngIf="validPeso && data.id === idError">
+            <small class="text-danger"
+              >Valor mínimo debe ser 10 y máximo 80</small
+            >
+          </div>
+        </td>
+        <td>
+          <input
+            type="text"
+            nz-input
+            (click)="startEdit(data.id)"
+            (input)="detetedCalzado($event.target.value, data.id)"
+            [(ngModel)]="data.calzado"
+            (blur)="stopEdit()"
+          />
+          <div class="absolute" *ngIf="validCalzado && data.id === idError">
+            <small class="text-danger"
+              >Valor mínimo debe ser 10 y máximo 45</small
+            >
+          </div>
+        </td>
+        <td>
+          <input
+            type="text"
+            nz-input
+            (click)="startEdit(data.id)"
+            [(ngModel)]="data.tallaCamisa"
+            (blur)="stopEdit()"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            nz-input
+            (click)="startEdit(data.id)"
+            (input)="detetedTallaPantalon($event.target.value, data.id)"
+            [(ngModel)]="data.tallaPantalon"
+            (blur)="stopEdit()"
+          />
+          <div class="absolute" *ngIf="validTallaPan && data.id === idError">
+            <small class="text-danger"
+              >Valor mínimo debe ser 4 y máximo 30</small
+            >
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
