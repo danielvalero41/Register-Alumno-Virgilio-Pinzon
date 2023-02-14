@@ -48,13 +48,20 @@
     </form>
 
     <div class="mt-4" nz-row nzAlign="middle" nzJustify="center">
-      <div nz-col>
+      <div nz-col class="btn-register">
         <button
           [disabled]="!formLogin.valid"
           (click)="login()"
           class="btn btn-secondary"
         >
           Ingresar
+        </button>
+        <button
+          [disabled]="!formLogin.valid"
+          (click)="register()"
+          class="btn btn-secondary"
+        >
+          Registrar
         </button>
       </div>
     </div>

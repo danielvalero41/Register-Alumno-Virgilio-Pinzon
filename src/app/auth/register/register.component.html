@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="container-login">
+    <div class="logo text-center text-primary text-bold text-title">
+      Registro de usuario
+    </div>
+
+    <form [formGroup]="formLogin">
+      <div nz-row nzAlign="middle">
+        <div nz-col nzSpan="24">
+          <label class="text-bold text-black"
+            >Ingrese su nombre de usuario</label
+          >
+          <input
+            class="mt-1"
+            nz-input
+            nzSize="large"
+            formControlName="username"
+            placeholder="correo electrónico"
+          />
+          <div
+            class="absolute"
+            *ngIf="f.username.invalid && f.username.touched"
+          >
+            <small *ngIf="f.username.errors?.required" class="text-danger"
+              >Este campo es obligatorio</small
+            >
+            <small *ngIf="f.username.errors?.pattern" class="text-danger"
+              >Formato de correo inválido (ejemplo@mail.com)</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4" nz-row nzAlign="middle">
+        <div nz-col nzSpan="24">
+          <label class="text-bold text-black">Contraseña</label>
+          <input
+            class="mt-1"
+            nz-input
+            formControlName="password"
+            type="password"
+            nzSize="large"
+            placeholder="Contraseña"
+          />
+          <div
+            class="absolute"
+            *ngIf="f.password.invalid && f.password.touched"
+          >
+            <small *ngIf="f.password.errors?.required" class="text-danger"
+              >Este campo es obligatorio</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="mt-4" nz-row nzAlign="middle" nzJustify="center">
+        <div nz-col class="gutter-row">
+          <label>Role</label>
+          <nz-select
+            formControlName="role"
+            [nzPlaceHolder]="'Seleccione un rol'"
+            [nzSize]="'large'"
+          >
+            <nz-option
+              *ngFor="let role of roles"
+              [nzValue]="role.value"
+              [nzLabel]="role.label"
+            ></nz-option>
+          </nz-select>
+        </div>
+      </div>
+      <div class="mt-4" nz-row nzAlign="middle" nzJustify="center">
+        <div nz-col class="btn-register">
+          <button
+            type="submit"
+            [disabled]="!formLogin.valid"
+            (click)="register($event)"
+            class="btn btn-secondary"
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
