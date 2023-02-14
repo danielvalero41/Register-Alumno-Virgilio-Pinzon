@@ -11,7 +11,6 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { es_ES } from 'ng-zorro-antd/i18n';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
-import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(es);
 
@@ -24,7 +23,6 @@ registerLocaleData(es);
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    ToastrModule.forRoot(),
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }, DatePipe],
   bootstrap: [AppComponent],
