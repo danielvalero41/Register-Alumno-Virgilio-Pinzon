@@ -9,6 +9,7 @@ import { SelectGradeComponent } from './components/select-grade/select-grade.com
 import { SelectSectionComponent } from './components/select-section/select-section.component';
 import { ListStudentsComponent } from './components/list-students/list-students.component';
 import { DetailsStudentsComponent } from './components/details-students/details-students.component';
+import { AddStudentsComponent } from './components/add-students/add-students.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { DetailsStudentsComponent } from './components/details-students/details-
     SelectSectionComponent,
     ListStudentsComponent,
     DetailsStudentsComponent,
+    AddStudentsComponent,
   ],
   imports: [
     CommonModule,

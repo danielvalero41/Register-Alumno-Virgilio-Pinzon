@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
       'select-section',
       'list-students',
       'details-students',
+      'add-students',
     ];
   }
 
@@ -24,5 +25,12 @@ export class DashboardComponent implements OnInit {
   }
   back() {
     if (this.actualStep > 0) this.actualStep--;
+  }
+
+  toAddStudents() {
+    this.actualStep = 4;
+  }
+  backListStudents() {
+    this.actualStep = 2;
   }
 }

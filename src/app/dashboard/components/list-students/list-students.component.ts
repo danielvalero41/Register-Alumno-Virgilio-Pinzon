@@ -10,6 +10,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class ListStudentsComponent implements OnInit {
   @Output() next = new EventEmitter<any>();
   @Output() back = new EventEmitter<any>();
+  @Output() toAddStudents = new EventEmitter<any>();
   formSearch: FormGroup;
   tableHeaders = [];
   rows = [];
@@ -58,5 +59,9 @@ export class ListStudentsComponent implements OnInit {
 
   backStep() {
     this.back.emit();
+  }
+
+  addEstudiante() {
+    this.toAddStudents.emit();
   }
 }
