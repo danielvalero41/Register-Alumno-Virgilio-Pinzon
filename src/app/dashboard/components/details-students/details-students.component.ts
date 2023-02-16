@@ -841,4 +841,8 @@ export class DetailsStudentsComponent implements OnInit {
     });
     console.log('Actualizar datos:', this.actualizacionDatos);
   }
+
+  backStep() {
+    this.back.emit();
+  }
 }
