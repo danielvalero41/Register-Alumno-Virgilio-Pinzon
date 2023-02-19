@@ -42,7 +42,7 @@
       ></td>
       <td
         nzAlign="center"
-        *ngFor="let item of dataRow | keyvalue: unsorted; let first = first"
+        *ngFor="let item of dataRow | keyvalue : unsorted; let first = first"
         [ngClass]="{ first: first }"
       >
         <div *ngIf="isObject(item.value)">
@@ -74,6 +74,12 @@
     </tr>
   </tbody>
 </nz-table>
+<nz-pagination
+  [nzPageIndex]="pageIndex"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  (nzPageIndexChange)="pageChange($event)"
+></nz-pagination>
 
 <ng-template #empty>
   <div class="container-empty">

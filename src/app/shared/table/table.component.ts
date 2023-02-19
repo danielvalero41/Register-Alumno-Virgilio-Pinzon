@@ -10,7 +10,13 @@ export class TableComponent implements OnInit {
   @Input() tableHeaders;
   @Output() eventAction = new EventEmitter<any>();
   isCheckbox = false;
+  pageIndex = 1;
+  pageSize = 2;
+  total = 5;
 
+  pageChange(pageIndex: number): void {
+    this.pageIndex = pageIndex;
+  }
   constructor() {}
 
   ngOnInit(): void {

@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { DashboardService } from '../../services/dashboard.service';
+import { ListAllStudents } from 'src/app/helpers/Estudents';
 
 @Component({
   selector: 'list-students',
@@ -14,7 +16,11 @@ export class ListStudentsComponent implements OnInit {
   formSearch: FormGroup;
   tableHeaders = [];
   rows = [];
-  constructor(public fb: FormBuilder, public route: Router) {
+  constructor(
+    public fb: FormBuilder,
+    public route: Router,
+    public dashboardService: DashboardService
+  ) {
     this.formSearch = this.fb.group({
       search: [''],
     });
@@ -33,23 +39,28 @@ export class ListStudentsComponent implements OnInit {
         label: 'Acciones',
       },
     ];
-
-    this.rows = new Array(20).fill(0).map((_, index) => ({
-      id: index,
-      nombre: `Estudiante ${index}`,
-      cedula: 2315497,
-      edad: 12,
-      action: {
-        id: 1,
-        icono: 'fas fa-search',
-        color: 'black',
-        nombre: 'search',
-      },
-    }));
-    console.log(this.rows);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dashboardService.loadListStudents();
+
+    this.dashboardService.currentListStudents$.subscribe(
+      (data: ListAllStudents) => {
+        this.rows = data.docs.map((item, index) => ({
+          id: index,
+          nombre: `${item.datosPersonales.nombre} ${index}`,
+          cedula: `${item.datosPersonales.cedula.tipo}-${item.datosPersonales.cedula.numero}`,
+          edad: `${item.datosPersonales.edad}`,
+          action: {
+            id: 1,
+            icono: 'fas fa-search',
+            color: 'black',
+            nombre: 'search',
+          },
+        }));
+      }
+    );
+  }
 
   filterEnter() {}
 

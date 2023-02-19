@@ -7,6 +7,7 @@ import { TableComponent } from './table/table.component';
 import { TableCustomComponent } from './table-custom/table-custom.component';
 import { TableUpdateDataComponent } from './table-update-data/table-update-data.component';
 import { TableRetiroComponent } from './table-retiro/table-retiro.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,13 @@ import { TableRetiroComponent } from './table-retiro/table-retiro.component';
     TableUpdateDataComponent,
     TableRetiroComponent,
   ],
-  imports: [CommonModule, NgZorroAndtModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    NgZorroAndtModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzPaginationModule,
+  ],
   exports: [
     NgZorroAndtModule,
     NavBarComponent,
@@ -24,6 +31,7 @@ import { TableRetiroComponent } from './table-retiro/table-retiro.component';
     TableCustomComponent,
     TableUpdateDataComponent,
     TableRetiroComponent,
+    NzPaginationModule,
   ],
 })
 export class SharedModule {}
