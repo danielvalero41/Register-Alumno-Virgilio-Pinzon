@@ -39,6 +39,18 @@ export class DashboardService {
       );
   }
 
+  addStudents(body): Observable<any> {
+    const url = `${this.apiUrl}/api/v1/alumnos`;
+
+    return this.http
+      .post(url, body, {
+        headers: new HttpHeaders({
+          Accept: '*/*',
+        }),
+      })
+      .pipe(map((data) => data));
+  }
+
   loadListStudents(limit: number = 10, pageIndex: number = 1) {
     const httpOptions = {
       headers: new HttpHeaders({
