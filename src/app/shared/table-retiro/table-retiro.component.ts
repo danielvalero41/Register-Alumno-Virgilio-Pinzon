@@ -1,17 +1,21 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'table-custom',
-  templateUrl: './table-custom.component.html',
-  styleUrls: ['./table-custom.component.scss'],
+  selector: 'table-retiro',
+  templateUrl: './table-retiro.component.html',
+  styleUrls: ['./table-retiro.component.scss'],
 })
-export class TableCustomComponent implements OnInit {
+export class TableRetiroComponent implements OnInit {
   @Input() listOfData = [];
   @Input() tableHeaders = [];
   @Output() sendData = new EventEmitter<any>();
   i = 0;
   editId: string | null = null;
   constructor() {}
+
+  ngOnInit(): void {
+    this.addRow();
+  }
 
   startEdit(id: string): void {
     this.editId = id;
@@ -28,10 +32,12 @@ export class TableCustomComponent implements OnInit {
       ...this.listOfData,
       {
         id: this.i,
-        grado: 'Ingrese el grado',
-        anoEscolar: 'Ingrese el año escolar',
-        fechaInscripcion: 'Ingrese la fecha de inscripción',
-        nombre: 'Ingrese el nombre del docente',
+        retiro: false,
+        fecha: 'Ingrese la fecha',
+        motivo: 'Ingrese motivo',
+        institutoAEstudiar: 'Ingrese el nombre de la institucion',
+        nombreRepresentante: 'Ingrese el nombre del representante',
+        cedulaRepresentante: 'Ingrese la cedula',
       },
     ];
     this.i++;
@@ -39,11 +45,6 @@ export class TableCustomComponent implements OnInit {
 
   deleteRow(id: string): void {
     this.listOfData = this.listOfData.filter((d) => d.id !== id);
-  }
-
-  ngOnInit(): void {
-    // this.addRow();
-    // this.addRow();
   }
 
   unsorted() {}

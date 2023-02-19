@@ -1,0 +1,110 @@
+<div class="mt-5">
+  <nz-table #editRowTable nzBordered [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th *ngFor="let item of tableHeaders">{{ item }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of editRowTable.data" class="editable-row">
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          ></div>
+          <nz-select
+            [(ngModel)]="data.retiro"
+            (blur)="stopEdit()"
+            name="value"
+            nzPlaceHolder=""
+            nzAllowClear
+          >
+            <nz-option nzLabel="Si" [nzValue]="true"> </nz-option>
+            <nz-option nzLabel="No" [nzValue]="false"> </nz-option>
+          </nz-select>
+        </td>
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.fecha }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.fecha"
+            (blur)="stopEdit()"
+          />
+        </td>
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.motivo }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.motivo"
+            (blur)="stopEdit()"
+          />
+        </td>
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.institutoAEstudiar }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.institutoAEstudiar"
+            (blur)="stopEdit()"
+          />
+        </td>
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.nombreRepresentante }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.nombreRepresentante"
+            (blur)="stopEdit()"
+          />
+        </td>
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.cedulaRepresentante }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.cedulaRepresentante"
+            (blur)="stopEdit()"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
