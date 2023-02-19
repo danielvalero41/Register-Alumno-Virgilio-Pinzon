@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { ListAllStudents } from 'src/app/helpers/Estudents';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'list-students',
@@ -63,6 +64,13 @@ export class ListStudentsComponent implements OnInit {
         }
       }
     );
+
+    this.formSearch
+      .get('search')
+      ?.valueChanges.pipe(debounceTime(500))
+      .subscribe((value) => {
+        this.dashboardService.getListStudentsByName(value);
+      });
   }
 
   filterEnter() {}

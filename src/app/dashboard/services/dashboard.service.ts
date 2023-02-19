@@ -21,6 +21,24 @@ export class DashboardService {
 
   constructor(private http: HttpClient) {}
 
+  getListStudentsByName(name = '') {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.token,
+      }),
+    };
+    return this.http
+      .get<any>(`${this.apiUrl}/api/v1/alumnos?name=${name}`, httpOptions)
+      .subscribe(
+        (data) => {
+          this.currentListStudents.next(data);
+        },
+        (error) => {
+          //   this.error.next(error);
+        }
+      );
+  }
+
   loadListStudents(limit: number = 10, pageIndex: number = 1) {
     const httpOptions = {
       headers: new HttpHeaders({
