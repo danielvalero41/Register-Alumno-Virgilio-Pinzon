@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DashboardService } from 'src/app/dashboard/services/dashboard.service';
 
 @Component({
   selector: 'app-table',
@@ -13,11 +14,11 @@ export class TableComponent implements OnInit {
   pageIndex = 1;
   pageSize = 2;
   total = 5;
-
   pageChange(pageIndex: number): void {
     this.pageIndex = pageIndex;
+    this.dashboardService.loadListStudents(10, pageIndex);
   }
-  constructor() {}
+  constructor(public dashboardService: DashboardService) {}
 
   ngOnInit(): void {
     console.log(this.rows);

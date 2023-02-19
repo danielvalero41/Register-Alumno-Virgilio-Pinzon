@@ -46,18 +46,21 @@ export class ListStudentsComponent implements OnInit {
 
     this.dashboardService.currentListStudents$.subscribe(
       (data: ListAllStudents) => {
-        this.rows = data.docs.map((item, index) => ({
-          id: index,
-          nombre: `${item.datosPersonales.nombre} ${index}`,
-          cedula: `${item.datosPersonales.cedula.tipo}-${item.datosPersonales.cedula.numero}`,
-          edad: `${item.datosPersonales.edad}`,
-          action: {
-            id: 1,
-            icono: 'fas fa-search',
-            color: 'black',
-            nombre: 'search',
-          },
-        }));
+        this.rows = [];
+        if (data.docs.length > 0) {
+          this.rows = data.docs.map((item, index) => ({
+            id: index,
+            nombre: `${item.datosPersonales.nombre} ${index}`,
+            cedula: `${item.datosPersonales.cedula.tipo}-${item.datosPersonales.cedula.numero}`,
+            edad: `${item.datosPersonales.edad}`,
+            action: {
+              id: 1,
+              icono: 'fas fa-search',
+              color: 'black',
+              nombre: 'search',
+            },
+          }));
+        }
       }
     );
   }
