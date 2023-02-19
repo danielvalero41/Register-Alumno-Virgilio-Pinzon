@@ -383,3 +383,18 @@ export enum Medio {
   Publico = 'Publico',
   TransporteEscolar = 'Transporte Escolar',
 }
+
+export const getListAllStudents = (): ListAllStudents => {
+  return {
+    docs: [],
+    totalDocs: 154,
+    limit: 1,
+    totalPages: 154,
+    page: 1,
+    pagingCounter: 1,
+    hasPrevPage: false,
+    hasNextPage: true,
+    prevPage: null,
+    nextPage: 2,
+  };
+};

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   formLogin: FormGroup;
-  constructor(public fb: FormBuilder, public route: Router) {
+  constructor(
+    public fb: FormBuilder,
+    public route: Router,
+    public loginService: LoginService
+  ) {
     this.formLogin = this.fb.group({
       user: [
         '',
@@ -32,7 +38,21 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    this.route.navigate(['dashboard']);
+    let existsToken = true;
+    this.loginService.verifyToken().subscribe((data: any) => {
+      if (data?.error === 'Token no válido') {
+        existsToken = false;
+      }
+    });
+
+    if (existsToken) {
+      this.route.navigate(['dashboard']);
+    } else {
+      this.route.navigate(['/login']);
+      const username = this.formLogin.get('user')?.value;
+      const password = this.formLogin.get('password')?.value;
+      this.loginService.getNewToken(username, password);
+    }
   }
 
   register() {

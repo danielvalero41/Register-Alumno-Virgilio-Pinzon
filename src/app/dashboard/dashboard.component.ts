@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   arraySteps: string[] = [];
-  actualStep: number = 0;
+  actualStep: number = 2;
   constructor() {
     this.arraySteps = [
       'select-grade',
