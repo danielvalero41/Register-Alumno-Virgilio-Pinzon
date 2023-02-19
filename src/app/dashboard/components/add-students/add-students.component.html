@@ -161,7 +161,7 @@
             <input
               nz-input
               nzSize="large"
-              formControlName="telefonoResidencial"
+              formControlName="telefonoResidencialNino"
               placeholder=""
             />
           </div>
@@ -2106,7 +2106,15 @@
         </div>
       </nz-tab>
 
-      <nz-tab nzTitle="Control de Retiro">Content of Tab Pane 3</nz-tab>
+      <nz-tab nzTitle="Control de Retiro">
+        <div class="mt-5">
+          <table-retiro
+            (sendData)="recivedRetiroData($event)"
+            [tableHeaders]="tableHeadersRetiroData"
+            [listOfData]="listRetiroData"
+          ></table-retiro>
+        </div>
+      </nz-tab>
     </nz-tabset>
   </form>
 </div>
@@ -2117,7 +2125,13 @@
   </div>
 
   <div nz-col>
-    <button class="btn btn-primary">Guardar</button>
+    <button
+      [disabled]="!formAddStudent.valid"
+      (click)="addStudents()"
+      class="btn btn-primary"
+    >
+      Guardar
+    </button>
   </div>
 </div>
 

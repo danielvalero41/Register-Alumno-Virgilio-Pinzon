@@ -6,6 +6,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TableComponent } from './table/table.component';
 import { TableCustomComponent } from './table-custom/table-custom.component';
 import { TableUpdateDataComponent } from './table-update-data/table-update-data.component';
+import { TableRetiroComponent } from './table-retiro/table-retiro.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { TableUpdateDataComponent } from './table-update-data/table-update-data.
     TableComponent,
     TableCustomComponent,
     TableUpdateDataComponent,
+    TableRetiroComponent,
   ],
   imports: [CommonModule, NgZorroAndtModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -21,6 +23,7 @@ import { TableUpdateDataComponent } from './table-update-data/table-update-data.
     TableComponent,
     TableCustomComponent,
     TableUpdateDataComponent,
+    TableRetiroComponent,
   ],
 })
 export class SharedModule {}
