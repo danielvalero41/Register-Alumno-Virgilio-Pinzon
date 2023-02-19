@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   arraySteps: string[] = [];
-  actualStep: number = 2;
+  actualStep: number = 0;
   constructor() {
     this.arraySteps = [
-      'select-grade',
-      'select-section',
+      // 'select-grade',
+      // 'select-section',
       'list-students',
       'details-students',
       'add-students',
