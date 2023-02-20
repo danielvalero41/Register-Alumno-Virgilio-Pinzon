@@ -71,7 +71,7 @@ export class ListStudentsComponent implements OnInit {
       .get('search')
       ?.valueChanges.pipe(debounceTime(500))
       .subscribe((value) => {
-        this.dashboardService.isLoading.next(true);
+        this.dashboardService.search.next(value);
         this.dashboardService.getListStudentsByName(value);
       });
   }

@@ -14,12 +14,14 @@ export class DashboardService {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YxNWYyZDliNzlmYzE3NmJhNjQxZmUiLCJyb2xlIjpbInByb2Zlc29yIl0sImlhdCI6MTY3NjgyMDA3OCwiZXhwIjoxNjc2OTA2NDc4fQ.Ho9dBEG5IqbOejnv8l2CSafWwyddZjq9sF_OrULiDgQ';
   isLoading = new BehaviorSubject<boolean>(false);
   pageIndex = new BehaviorSubject<number>(1);
+  search = new BehaviorSubject<string>('false');
 
   currentListStudents = new BehaviorSubject<ListAllStudents>(
     getListAllStudents()
   );
   pageIndex$ = this.pageIndex.asObservable();
   isLoading$ = this.isLoading.asObservable();
+  search$ = this.search.asObservable();
 
   currentListStudents$ = this.currentListStudents.asObservable();
 
@@ -40,7 +42,6 @@ export class DashboardService {
         },
         (error) => {
           this.isLoading.next(false);
-
           //   this.error.next(error);
         }
       );
