@@ -44,6 +44,7 @@ export class AddStudentsComponent implements OnInit {
   tableHeadersRetiroData = [];
   actualizacionDatos = [];
   controlRetiro;
+  minEstatura = 0.5;
 
   today = new Date();
 
@@ -67,7 +68,10 @@ export class AddStudentsComponent implements OnInit {
       municipio: ['', Validators.required],
       pais: ['', Validators.required],
       estadoNacimiento: ['', Validators.required],
-      telefonoResidencialNino: ['', Validators.required],
+      telefonoResidencialNino: [
+        '',
+        [Validators.required, Validators.minLength(11)],
+      ],
       correo: ['', Validators.required],
       poseeCanaima: ['', Validators.required],
       serialCanaima: ['', Validators.required],
@@ -84,8 +88,11 @@ export class AddStudentsComponent implements OnInit {
       calzado: ['', Validators.required],
       nombreEmergencia: ['', Validators.required],
       parentesco: ['', Validators.required],
-      telefonoResidencial: ['', Validators.required],
-      telefonoCelular: ['', Validators.required],
+      telefonoResidencial: [
+        '',
+        [Validators.required, Validators.minLength(11)],
+      ],
+      telefonoCelular: ['', [Validators.required, Validators.minLength(11)]],
       poseeHermanos: ['', Validators.required],
       cantidadHermanos: ['', Validators.required],
       gradoCursan: [[''], Validators.required],
@@ -1141,6 +1148,7 @@ export class AddStudentsComponent implements OnInit {
     };
     this.apiDashboard.addStudents(body).subscribe(
       (resp) => {
+        this.backListStudents.emit();
         console.log(resp);
       },
       (error) => {

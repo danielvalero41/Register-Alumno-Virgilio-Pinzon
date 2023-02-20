@@ -10,8 +10,8 @@ export class DashboardComponent implements OnInit {
   actualStep: number = 0;
   constructor() {
     this.arraySteps = [
-      // 'select-grade',
-      // 'select-section',
+      'select-grade',
+      'select-section',
       'list-students',
       'details-students',
       'add-students',

@@ -49,12 +49,20 @@
           </div>
           <div nz-col nzSpan="6" class="gutter-row">
             <label>Grupo sanguineo</label>
-            <input
-              nz-input
+            <nz-select
               nzSize="large"
               formControlName="grupoSanguineo"
-              placeholder=""
-            />
+              nzPlaceHolder=""
+            >
+              <nz-option [nzValue]="'A+'" nzLabel="A+"> </nz-option>
+              <nz-option [nzValue]="'A-'" nzLabel="A-"> </nz-option>
+              <nz-option [nzValue]="'B+'" nzLabel="B+"> </nz-option>
+              <nz-option [nzValue]="'B-'" nzLabel="B-"> </nz-option>
+              <nz-option [nzValue]="'AB+'" nzLabel="AB+"> </nz-option>
+              <nz-option [nzValue]="'AB-'" nzLabel="AB-"> </nz-option>
+              <nz-option [nzValue]="'O+'" nzLabel="O+"> </nz-option>
+              <nz-option [nzValue]="'O-'" nzLabel="O-"> </nz-option>
+            </nz-select>
           </div>
         </div>
 
@@ -100,6 +108,7 @@
               nzSize="large"
               formControlName="edad"
               placeholder=""
+              onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
             />
           </div>
 
@@ -161,8 +170,10 @@
             <input
               nz-input
               nzSize="large"
+              maxlength="11"
               formControlName="telefonoResidencialNino"
               placeholder=""
+              onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
             />
           </div>
           <div nz-col nzSpan="6" class="gutter-row">
@@ -302,6 +313,7 @@
               nzSize="large"
               formControlName="peso"
               placeholder=""
+              onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
             />
           </div>
           <div nz-col nzSpan="6" class="gutter-row">
@@ -311,6 +323,7 @@
               nzSize="large"
               formControlName="tallaPantalon"
               placeholder=""
+              onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
             />
           </div>
           <div nz-col nzSpan="6" class="gutter-row">
@@ -320,6 +333,7 @@
               nzSize="large"
               formControlName="calzado"
               placeholder=""
+              onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
             />
           </div>
         </div>
@@ -348,8 +362,10 @@
             <input
               nz-input
               nzSize="large"
+              maxlength="11"
               formControlName="telefonoResidencial"
               placeholder=""
+              onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
             />
           </div>
           <div nz-col nzSpan="6" class="gutter-row">
@@ -357,8 +373,10 @@
             <input
               nz-input
               nzSize="large"
+              maxlength="11"
               formControlName="telefonoCelular"
               placeholder=""
+              onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
             />
           </div>
         </div>
@@ -382,6 +400,7 @@
               nzSize="large"
               formControlName="cantidadHermanos"
               placeholder=""
+              onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
             />
           </div>
 
@@ -2126,7 +2145,14 @@
 
   <div nz-col>
     <button
-      [disabled]="!formAddStudent.valid"
+      [disabled]="
+        !formAddStudent.valid ||
+        !(f.peso.value >= 10 && f.peso.value <= 80) ||
+        !(f.tallaPantalon.value >= 4 && f.tallaPantalon.value <= 30) ||
+        !(f.calzado.value >= 10 && f.calzado.value <= 30) ||
+        !(f.estatura.value >= minEstatura && f.estatura.value <= 2) ||
+        !(controlInscripcion.length > 0)
+      "
       (click)="addStudents()"
       class="btn btn-primary"
     >
