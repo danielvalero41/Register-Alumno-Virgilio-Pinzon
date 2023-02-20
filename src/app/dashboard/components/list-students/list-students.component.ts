@@ -17,6 +17,7 @@ export class ListStudentsComponent implements OnInit {
   formSearch: FormGroup;
   tableHeaders = [];
   rows = [];
+  currentListStudents!: ListAllStudents;
   constructor(
     public fb: FormBuilder,
     public route: Router,
@@ -48,6 +49,7 @@ export class ListStudentsComponent implements OnInit {
     this.dashboardService.currentListStudents$.subscribe(
       (data: ListAllStudents) => {
         this.rows = [];
+        this.currentListStudents = data;
         if (data.docs.length > 0) {
           this.rows = data.docs.map((item, index) => ({
             id: index,
@@ -69,6 +71,7 @@ export class ListStudentsComponent implements OnInit {
       .get('search')
       ?.valueChanges.pipe(debounceTime(500))
       .subscribe((value) => {
+        this.dashboardService.isLoading.next(true);
         this.dashboardService.getListStudentsByName(value);
       });
   }

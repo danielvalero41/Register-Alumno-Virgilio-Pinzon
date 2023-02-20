@@ -6,6 +6,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterComponent } from './register/register.component';
+import {
+  NzNotificationModule,
+  NzNotificationService,
+} from 'ng-zorro-antd/notification';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -15,6 +19,8 @@ import { RegisterComponent } from './register/register.component';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    NzNotificationModule,
   ],
+  providers: [NzNotificationService],
 })
 export class AuthModule {}

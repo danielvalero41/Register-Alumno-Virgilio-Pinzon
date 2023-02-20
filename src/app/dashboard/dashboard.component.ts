@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from './services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,17 +9,22 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   arraySteps: string[] = [];
   actualStep: number = 0;
-  constructor() {
+  isLoading!: boolean;
+  constructor(private dashboardService: DashboardService) {
     this.arraySteps = [
-      // 'select-grade',
-      // 'select-section',
+      'select-grade',
+      'select-section',
       'list-students',
       'details-students',
       'add-students',
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dashboardService.isLoading$.subscribe((data: boolean) => {
+      this.isLoading = data;
+    });
+  }
 
   next() {
     if (this.actualStep < this.arraySteps.length - 1) this.actualStep++;

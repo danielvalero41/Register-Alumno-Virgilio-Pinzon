@@ -10,6 +10,7 @@ import { SelectSectionComponent } from './components/select-section/select-secti
 import { ListStudentsComponent } from './components/list-students/list-students.component';
 import { DetailsStudentsComponent } from './components/details-students/details-students.component';
 import { AddStudentsComponent } from './components/add-students/add-students.component';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AddStudentsComponent } from './components/add-students/add-students.com
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    NzSpinModule,
   ],
 })
 export class DashboardModule {}

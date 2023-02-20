@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { AuthService } from '../services/auth.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public route: Router,
-    public loginService: LoginService
+    public loginService: LoginService,
+    private notification: NzNotificationService
   ) {
     this.formLogin = this.fb.group({
       user: [
@@ -46,6 +48,8 @@ export class LoginComponent implements OnInit {
     });
 
     if (existsToken) {
+      this.notification.create('success', 'Login', 'Ingreso exitoso');
+
       this.route.navigate(['dashboard']);
     } else {
       this.route.navigate(['/login']);

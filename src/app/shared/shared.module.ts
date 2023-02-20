@@ -8,6 +8,7 @@ import { TableCustomComponent } from './table-custom/table-custom.component';
 import { TableUpdateDataComponent } from './table-update-data/table-update-data.component';
 import { TableRetiroComponent } from './table-retiro/table-retiro.component';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { BehaviorSubject } from 'rxjs';
 
 @NgModule({
   declarations: [

@@ -20,3 +20,12 @@
 .content {
   background-color: #f0f2f5;
 }
+.nz-spin {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  z-index: 9999;
+}

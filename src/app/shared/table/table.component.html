@@ -76,7 +76,7 @@
 </nz-table>
 <nz-pagination
   [nzPageIndex]="pageIndex"
-  [nzTotal]="total"
+  [nzTotal]="currentListStudents.totalPages"
   [nzPageSize]="pageSize"
   (nzPageIndexChange)="pageChange($event)"
 ></nz-pagination>

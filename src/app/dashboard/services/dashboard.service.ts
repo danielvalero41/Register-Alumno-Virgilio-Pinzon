@@ -12,10 +12,14 @@ export class DashboardService {
   apiUrl = `https://api-escuela-production.up.railway.app`;
   token =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YxNWYyZDliNzlmYzE3NmJhNjQxZmUiLCJyb2xlIjpbInByb2Zlc29yIl0sImlhdCI6MTY3NjgyMDA3OCwiZXhwIjoxNjc2OTA2NDc4fQ.Ho9dBEG5IqbOejnv8l2CSafWwyddZjq9sF_OrULiDgQ';
+  isLoading = new BehaviorSubject<boolean>(false);
+  pageIndex = new BehaviorSubject<number>(1);
 
   currentListStudents = new BehaviorSubject<ListAllStudents>(
     getListAllStudents()
   );
+  pageIndex$ = this.pageIndex.asObservable();
+  isLoading$ = this.isLoading.asObservable();
 
   currentListStudents$ = this.currentListStudents.asObservable();
 
@@ -32,8 +36,11 @@ export class DashboardService {
       .subscribe(
         (data) => {
           this.currentListStudents.next(data);
+          this.isLoading.next(false);
         },
         (error) => {
+          this.isLoading.next(false);
+
           //   this.error.next(error);
         }
       );
@@ -48,7 +55,11 @@ export class DashboardService {
           Accept: '*/*',
         }),
       })
-      .pipe(map((data) => data));
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      );
   }
 
   loadListStudents(limit: number = 10, pageIndex: number = 1) {
@@ -65,10 +76,9 @@ export class DashboardService {
       .subscribe(
         (data) => {
           this.currentListStudents.next(data);
+          this.isLoading.next(false);
         },
-        (error) => {
-          //   this.error.next(error);
-        }
+        (error) => {}
       );
   }
 }

@@ -3,31 +3,40 @@
   <nz-layout>
     <nz-content class="content">
       <div class="container">
-        <select-grade
-          *ngIf="arraySteps[actualStep] === 'select-grade'"
-          (next)="next()"
-        ></select-grade>
-        <select-section
-          *ngIf="arraySteps[actualStep] === 'select-section'"
-          (next)="next()"
-          (back)="back()"
-        ></select-section>
-        <list-students
-          *ngIf="arraySteps[actualStep] === 'list-students'"
-          (toAddStudents)="toAddStudents()"
-          (next)="next()"
-          (back)="back()"
-        ></list-students>
+        <nz-spin
+          [nzSize]="'large'"
+          [nzTip]="'Cargando...'"
+          [nzSpinning]="true"
+          class="nz-spin"
+          *ngIf="isLoading"
+        ></nz-spin>
+        <ng-container *ngIf="!isLoading">
+          <select-grade
+            *ngIf="arraySteps[actualStep] === 'select-grade'"
+            (next)="next()"
+          ></select-grade>
+          <select-section
+            *ngIf="arraySteps[actualStep] === 'select-section'"
+            (next)="next()"
+            (back)="back()"
+          ></select-section>
+          <list-students
+            *ngIf="arraySteps[actualStep] === 'list-students'"
+            (toAddStudents)="toAddStudents()"
+            (next)="next()"
+            (back)="back()"
+          ></list-students>
 
-        <details-students
-          *ngIf="arraySteps[actualStep] === 'details-students'"
-          (back)="back()"
-        ></details-students>
+          <details-students
+            *ngIf="arraySteps[actualStep] === 'details-students'"
+            (back)="back()"
+          ></details-students>
 
-        <add-students
-          *ngIf="arraySteps[actualStep] === 'add-students'"
-          (backListStudents)="backListStudents()"
-        ></add-students>
+          <add-students
+            *ngIf="arraySteps[actualStep] === 'add-students'"
+            (backListStudents)="backListStudents()"
+          ></add-students>
+        </ng-container>
       </div>
     </nz-content>
   </nz-layout>
