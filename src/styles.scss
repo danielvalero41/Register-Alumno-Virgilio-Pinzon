@@ -45,6 +45,9 @@ button {
   color: #000;
 }
 
+.text-white {
+  color: #fff;
+}
 .text-underline {
   text-decoration: underline;
 }
@@ -351,4 +354,10 @@ button[disabled] {
   background: #333333;
   border-bottom: 1px solid #f0f0f0;
   transition: background 0.3s ease;
+}
+.ant-layout-footer {
+  padding: 24px 50px;
+  color: rgb(255 255 255);
+  font-size: 14px;
+  background: #4878a0;
 }

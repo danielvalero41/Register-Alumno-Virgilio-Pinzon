@@ -47,14 +47,21 @@
       >
         <div *ngIf="isObject(item.value)">
           <div
-            *ngIf="item.value.icono"
             class="icono"
-            (click)="actionEmit(dataRow)"
+            (click)="onStudentClick(dataRow)"
             [ngStyle]="{ color: item.value.color }"
           >
             <i [class]="item.value.icono"></i>
           </div>
 
+          <div
+            *ngIf="item.value._id"
+            class="icono"
+            (click)="removeStudent(dataRow)"
+            [ngStyle]="{ color: item.value.color }"
+          >
+            <i class="fa fa-trash"></i>
+          </div>
           <div *ngIf="!item.value.icono">
             <div
               class="estado"

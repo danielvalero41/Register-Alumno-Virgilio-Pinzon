@@ -1,15 +1,23 @@
 <div class="container">
   <div class="mb-5" nz-row nzAlign="top" nzJustify="center">
     <div nz-col>
-      <p class="text-bold text-primary">Nombre del estudiante</p>
+      <p class="text-bold text-primary">Registro del estudiante</p>
     </div>
   </div>
 
-  <form [formGroup]="formDetailsStudent">
+  <form [formGroup]="formAddStudent" nz-form>
     <nz-tabset [nzCentered]="true">
       <nz-tab nzTitle="Datos del estudiante">
         <div nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Apellidos</label>
             <input
               nz-input
@@ -17,8 +25,25 @@
               formControlName="apellido"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.get('apellido').invalid &&
+                formAddStudent.get('apellido').touched
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["apellido"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Nombres</label>
             <input
               nz-input
@@ -26,8 +51,25 @@
               formControlName="nombre"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['nombre'].touched &&
+                formAddStudent.controls['nombre'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["nombre"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="2" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="2"
+            nzXs="24"
+            nzSm="6"
+            nzMd="2"
+            nzLg="2"
+            class="gutter-row"
+          >
             <label>Tipo</label>
             <nz-select
               nzSize="large"
@@ -37,8 +79,25 @@
               <nz-option nzValue="V" nzLabel="V"> </nz-option>
               <nz-option nzValue="E" nzLabel="E"> </nz-option>
             </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['tipoCedula'].touched &&
+                formAddStudent.controls['tipoCedula'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["tipoCedula"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="4" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="4"
+            nzXs="24"
+            nzSm="10"
+            nzMd="6"
+            nzLg="4"
+            class="gutter-row"
+          >
             <label>Cedula</label>
             <input
               nz-input
@@ -46,20 +105,60 @@
               formControlName="cedula"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.get('tipoCedula').invalid &&
+                formAddStudent.get('tipoCedula').touched
+              "
+              class="alert alert-danger"
+            >
+              El campo tipo de cédula es requerido
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Grupo sanguineo</label>
-            <input
-              nz-input
-              nzSize="large"
+            <nz-select
               formControlName="grupoSanguineo"
-              placeholder=""
-            />
+              nzAllowClear
+              nzPlaceHolder="Seleccione su grupo sanguíneo"
+            >
+              <nz-option
+                *ngFor="let group of bloodGroups"
+                [nzValue]="group"
+                [nzLabel]="group"
+                >{{ group }}</nz-option
+              >
+            </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['grupoSanguineo'].touched &&
+                formAddStudent.controls['grupoSanguineo'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["grupoSanguineo"]) }}
+            </div>
           </div>
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Lugar de nacimiento</label>
             <input
               nz-input
@@ -67,9 +166,26 @@
               formControlName="lugarNacimiento"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['lugarNacimiento'].touched &&
+                formAddStudent.controls['lugarNacimiento'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["lugarNacimiento"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Fecha de nacimiento</label>
             <div>
               <nz-date-picker
@@ -83,17 +199,51 @@
                 (nzOnOpenChange)="detectedDate($event)"
               ></nz-date-picker>
             </div>
+            <div
+              *ngIf="
+                formAddStudent.controls['fechaNacimiento'].touched &&
+                formAddStudent.controls['fechaNacimiento'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["fechaNacimiento"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="2" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="2"
+            nzXs="24"
+            nzSm="6"
+            nzMd="2"
+            nzLg="2"
+            class="gutter-row"
+          >
             <label>Sexo</label>
             <nz-select nzSize="large" nzPlaceHolder="" formControlName="sexo">
               <nz-option nzValue="Masculino" nzLabel="M"> </nz-option>
               <nz-option nzValue="Femenino" nzLabel="F"> </nz-option>
             </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['sexo'].touched &&
+                formAddStudent.controls['sexo'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["sexo"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="4" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="4"
+            nzXs="24"
+            nzSm="10"
+            nzMd="6"
+            nzLg="4"
+            class="gutter-row"
+          >
             <label>Edad</label>
             <input
               nz-input
@@ -101,9 +251,26 @@
               formControlName="edad"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['edad'].touched &&
+                formAddStudent.controls['edad'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["edad"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Dirección de habitación</label>
             <input
               nz-input
@@ -111,11 +278,30 @@
               formControlName="direccionHabitacion"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['direccionHabitacion'].touched &&
+                formAddStudent.controls['direccionHabitacion'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{
+                getErrorMessage(formAddStudent.controls["direccionHabitacion"])
+              }}
+            </div>
           </div>
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Parroquia</label>
             <input
               nz-input
@@ -123,9 +309,26 @@
               formControlName="parroquia"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['parroquia'].touched &&
+                formAddStudent.controls['parroquia'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["parroquia"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Municipio</label>
             <input
               nz-input
@@ -133,9 +336,26 @@
               formControlName="municipio"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['municipio'].touched &&
+                formAddStudent.controls['municipio'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["municipio"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Pais</label>
             <input
               nz-input
@@ -143,8 +363,25 @@
               formControlName="pais"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['pais'].touched &&
+                formAddStudent.controls['pais'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["pais"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Estado de nacimiento</label>
             <input
               nz-input
@@ -152,20 +389,56 @@
               formControlName="estadoNacimiento"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['estadoNacimiento'].touched &&
+                formAddStudent.controls['estadoNacimiento'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["estadoNacimiento"]) }}
+            </div>
           </div>
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Telefono residencial</label>
             <input
               nz-input
               nzSize="large"
-              formControlName="telefonoResidencial"
+              formControlName="telefonoResidencialNino"
               placeholder=""
             />
+
+            <div
+              *ngIf="
+                formAddStudent.controls['telefonoResidencialNino'].invalid &&
+                formAddStudent.controls['telefonoResidencialNino'].touched
+              "
+              class="alert alert-danger"
+            >
+              Por favor ingrese un número de teléfono válido con al menos 8
+              dígitos.
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Correo electronico</label>
             <input
               nz-input
@@ -173,8 +446,25 @@
               formControlName="correo"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['correo'].touched &&
+                formAddStudent.controls['correo'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["correo"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="2" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="2"
+            nzXs="24"
+            nzSm="6"
+            nzMd="2"
+            nzLg="2"
+            class="gutter-row"
+          >
             <label>¿Canaima?</label>
             <nz-select
               nzSize="large"
@@ -184,9 +474,26 @@
               <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
               <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
             </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['poseeCanaima'].touched &&
+                formAddStudent.controls['poseeCanaima'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["poseeCanaima"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="4" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="4"
+            nzXs="24"
+            nzSm="10"
+            nzMd="6"
+            nzLg="4"
+            class="gutter-row"
+          >
             <label>Serial</label>
             <input
               nz-input
@@ -194,9 +501,26 @@
               formControlName="serialCanaima"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['serialCanaima'].touched &&
+                formAddStudent.controls['serialCanaima'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["serialCanaima"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Nuevo ingreso</label>
             <nz-select
               nzSize="large"
@@ -206,6 +530,15 @@
               <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
               <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
             </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['nuevoIngreso'].touched &&
+                formAddStudent.controls['nuevoIngreso'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["nuevoIngreso"]) }}
+            </div>
           </div>
         </div>
 
@@ -218,6 +551,19 @@
               formControlName="institucionProcedencia"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['institucionProcedencia'].touched &&
+                formAddStudent.controls['institucionProcedencia'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{
+                getErrorMessage(
+                  formAddStudent.controls["institucionProcedencia"]
+                )
+              }}
+            </div>
           </div>
 
           <div nz-col nzSpan="12" class="gutter-row">
@@ -231,11 +577,28 @@
               formControlName="razonInscripcion"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['razonInscripcion'].touched &&
+                formAddStudent.controls['razonInscripcion'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["razonInscripcion"]) }}
+            </div>
           </div>
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Grado a cursar</label>
             <nz-select
               nzSize="large"
@@ -249,8 +612,25 @@
               <nz-option nzValue="5" nzLabel="5"> </nz-option>
               <nz-option nzValue="6" nzLabel="6"> </nz-option>
             </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['gradoCursar'].touched &&
+                formAddStudent.controls['gradoCursar'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["gradoCursar"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Repitiente</label>
             <nz-select
               nzSize="large"
@@ -260,9 +640,26 @@
               <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
               <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
             </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['repitiente'].touched &&
+                formAddStudent.controls['repitiente'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["repitiente"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Regular</label>
             <nz-select
               nzSize="large"
@@ -272,9 +669,26 @@
               <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
               <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
             </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['regular'].touched &&
+                formAddStudent.controls['regular'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["regular"]) }}
+            </div>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Talla de camisa</label>
             <input
               nz-input
@@ -282,11 +696,28 @@
               formControlName="tallaCamisa"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['tallaCamisa'].touched &&
+                formAddStudent.controls['tallaCamisa'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["tallaCamisa"]) }}
+            </div>
           </div>
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Estatura</label>
             <input
               nz-input
@@ -294,8 +725,31 @@
               formControlName="estatura"
               placeholder=""
             />
+
+            <div
+              *ngIf="
+                formAddStudent.get('estatura').invalid &&
+                formAddStudent.get('estatura').touched
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="formAddStudent.get('estatura').hasError('pattern')">
+                Ingrese una estatura valida en metros (min:0.5 y max: 2)
+              </div>
+              <div *ngIf="formAddStudent.get('estatura').hasError('max')">
+                Ingrese una estatura valida en metros (min:0.5 y max: 2)
+              </div>
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Peso</label>
             <input
               nz-input
@@ -303,17 +757,59 @@
               formControlName="peso"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['peso'].touched &&
+                formAddStudent.controls['peso'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["peso"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Talla del Pantalón</label>
-            <input
-              nz-input
-              nzSize="large"
+
+            <nz-select
               formControlName="tallaPantalon"
-              placeholder=""
-            />
+              [nzPlaceHolder]="'Selecciona un numero'"
+              [nzShowSearch]="true"
+            >
+              <nz-option
+                *ngFor="let option of optionsPants"
+                [nzValue]="option"
+                [nzLabel]="option"
+                >{{ option }}</nz-option
+              >
+            </nz-select>
+
+            <div
+              *ngIf="
+                formAddStudent.controls['tallaPantalon'].touched &&
+                formAddStudent.controls['tallaPantalon'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["tallaPantalon"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Calzado</label>
             <input
               nz-input
@@ -321,11 +817,28 @@
               formControlName="calzado"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['calzado'].touched &&
+                formAddStudent.controls['calzado'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["calzado"]) }}
+            </div>
           </div>
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>En caso emergencia recurrir a</label>
             <input
               nz-input
@@ -333,8 +846,25 @@
               formControlName="nombreEmergencia"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['nombreEmergencia'].touched &&
+                formAddStudent.controls['nombreEmergencia'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["nombreEmergencia"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Parentesco</label>
             <input
               nz-input
@@ -342,8 +872,25 @@
               formControlName="parentesco"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['parentesco'].touched &&
+                formAddStudent.controls['parentesco'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["parentesco"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono de residencia</label>
             <input
               nz-input
@@ -351,8 +898,27 @@
               formControlName="telefonoResidencial"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['telefonoResidencial'].touched &&
+                formAddStudent.controls['telefonoResidencial'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{
+                getErrorMessage(formAddStudent.controls["telefonoResidencial"])
+              }}
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono celular</label>
             <input
               nz-input
@@ -360,11 +926,28 @@
               formControlName="telefonoCelular"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['telefonoCelular'].touched &&
+                formAddStudent.controls['telefonoCelular'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["telefonoCelular"]) }}
+            </div>
           </div>
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿Tiene hermanos?</label>
             <nz-select
               nzSize="large"
@@ -374,8 +957,25 @@
               <nz-option [nzValue]="true" nzLabel="Si"> </nz-option>
               <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
             </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['poseeHermanos'].touched &&
+                formAddStudent.controls['poseeHermanos'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["poseeHermanos"]) }}
+            </div>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿Cuantos?</label>
             <input
               nz-input
@@ -383,6 +983,15 @@
               formControlName="cantidadHermanos"
               placeholder=""
             />
+            <div
+              *ngIf="
+                formAddStudent.controls['cantidadHermanos'].touched &&
+                formAddStudent.controls['cantidadHermanos'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["cantidadHermanos"]) }}
+            </div>
           </div>
 
           <div nz-col nzSpan="12" class="gutter-row">
@@ -390,7 +999,6 @@
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="gradoCursan"
               nzPlaceHolder=""
@@ -402,18 +1010,43 @@
               >
               </nz-option>
             </nz-select>
+            <div
+              *ngIf="
+                formAddStudent.controls['gradoCursan'].touched &&
+                formAddStudent.controls['gradoCursan'].invalid
+              "
+              class="alert alert-danger"
+            >
+              {{ getErrorMessage(formAddStudent.controls["gradoCursan"]) }}
+            </div>
           </div>
         </div>
       </nz-tab>
       <nz-tab nzTitle="Aspectos sociales">
         <div nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <p>¿Con quien vive el niño?</p>
             <label nz-checkbox formControlName="mama">Mamá</label>
             <label nz-checkbox formControlName="papa">Papá</label>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Otros</label>
             <input
               nz-input
@@ -423,7 +1056,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Total de personas que viven en el hogar</label>
             <input
               nz-input
@@ -433,7 +1074,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Numero de hermanos</label>
             <input
               nz-input
@@ -445,7 +1094,15 @@
         </div>
 
         <div nz-row class="mt-3" nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Lugar que ocupa el niño con a sus hermanos</label>
             <input
               nz-input
@@ -455,7 +1112,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Describa la relación con sus hermanos</label>
             <input
               nz-input
@@ -464,7 +1129,15 @@
               placeholder=""
             />
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Vive con otros familiares</label>
             <nz-select
               nzSize="large"
@@ -477,12 +1150,19 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿Quienes?</label>
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="vivenParentesco"
               nzPlaceHolder=""
@@ -510,7 +1190,15 @@
         </div>
 
         <div nz-row class="mt-3" nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label> Despues de clase ¿con quien se queda? </label>
             <input
               nz-input
@@ -520,7 +1208,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿Quien lo acompaña en las tareas?</label>
             <input
               nz-input
@@ -530,12 +1226,19 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Deporte que practica</label>
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="deportesPractica"
               nzPlaceHolder=""
@@ -549,7 +1252,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label> Horario </label>
             <input
               nz-input
@@ -568,7 +1279,15 @@
         </div>
 
         <div class="mt-5" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col class="gutter-row" nzSpan="6">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+          >
             <label>Apellidos</label>
             <input
               nz-input
@@ -578,7 +1297,15 @@
             />
           </div>
 
-          <div nz-col class="gutter-row" nzSpan="6">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+          >
             <label>Nombres</label>
             <input
               nz-input
@@ -588,7 +1315,15 @@
             />
           </div>
 
-          <div nz-col class="gutter-row" nzSpan="2">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="2"
+            nzXs="24"
+            nzSm="6"
+            nzMd="2"
+            nzLg="2"
+          >
             <label>Tipo</label>
             <nz-select
               nzSize="large"
@@ -601,7 +1336,16 @@
             </nz-select>
           </div>
 
-          <div nz-col class="gutter-row" nzSpan="4">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="4"
+            nzXs="24"
+            nzSm="10"
+            nzMd="6"
+            nzLg="4"
+          >
+            nzXs="24" nzSm="10" nzMd="6" nzLg="4"
             <label>Cedula</label>
             <input
               nz-input
@@ -611,7 +1355,15 @@
             />
           </div>
 
-          <div nz-col class="gutter-row" nzSpan="6">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+          >
             <label>Fecha de nacimiento</label>
             <div>
               <nz-date-picker
@@ -629,7 +1381,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Edad</label>
             <input
               nz-input
@@ -638,7 +1398,15 @@
               placeholder=""
             />
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Lugar de nacimiento</label>
             <input
               nz-input
@@ -650,7 +1418,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Estado civil</label>
             <nz-select
               formControlName="estadoCivilMadre"
@@ -667,7 +1443,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Ingreso económico</label>
             <input
               nz-input
@@ -677,7 +1461,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono residencial</label>
             <input
               nz-input
@@ -687,7 +1479,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono celular</label>
             <input
               nz-input
@@ -699,7 +1499,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Profesión u Oficio</label>
             <input
               nz-input
@@ -709,7 +1517,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Lugar de trabajo</label>
             <input
               nz-input
@@ -718,7 +1534,15 @@
               placeholder=""
             />
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono del trabajo</label>
             <input
               nz-input
@@ -743,12 +1567,19 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Enfermedades padecidas</label>
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="enfermedadesPadecidasMadre"
               nzPlaceHolder=""
@@ -764,7 +1595,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Vive con el niño</label>
             <nz-select
               nzSize="large"
@@ -776,7 +1615,15 @@
               <nz-option [nzValue]="false" nzLabel="No"></nz-option>
             </nz-select>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Grado de instrucción</label>
             <nz-select
               nzSize="large"
@@ -845,7 +1692,6 @@
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="actividadesReligionMadre"
               nzPlaceHolder=""
@@ -914,7 +1760,15 @@
         </div>
 
         <div class="mt-5" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col class="gutter-row" nzSpan="6">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+          >
             <label>Apellidos</label>
             <input
               nz-input
@@ -924,7 +1778,15 @@
             />
           </div>
 
-          <div nz-col class="gutter-row" nzSpan="6">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+          >
             <label>Nombres</label>
             <input
               nz-input
@@ -934,7 +1796,15 @@
             />
           </div>
 
-          <div nz-col class="gutter-row" nzSpan="2">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="2"
+            nzXs="24"
+            nzSm="6"
+            nzMd="2"
+            nzLg="2"
+          >
             <label>Tipo</label>
             <nz-select
               nzSize="large"
@@ -947,7 +1817,15 @@
             </nz-select>
           </div>
 
-          <div nz-col class="gutter-row" nzSpan="4">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="4"
+            nzXs="24"
+            nzSm="10"
+            nzMd="6"
+            nzLg="4"
+          >
             <label>Cedula</label>
             <input
               nz-input
@@ -957,7 +1835,15 @@
             />
           </div>
 
-          <div nz-col class="gutter-row" nzSpan="6">
+          <div
+            nz-col
+            class="gutter-row"
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+          >
             <label>Fecha de nacimiento</label>
             <div>
               <nz-date-picker
@@ -975,7 +1861,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Estado civil</label>
             <nz-select
               nzSize="large"
@@ -994,7 +1888,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Lugar de Naciemiento</label>
             <input
               nz-input
@@ -1004,7 +1906,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Profesión u oficio</label>
             <input
               nz-input
@@ -1014,7 +1924,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Edad</label>
             <input
               nz-input
@@ -1026,7 +1944,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Ingreso económico</label>
             <input
               nz-input
@@ -1036,7 +1962,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono residencial</label>
             <input
               nz-input
@@ -1046,7 +1980,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono celular</label>
             <input
               nz-input
@@ -1058,7 +2000,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Lugar de trabajo</label>
             <input
               nz-input
@@ -1067,7 +2017,15 @@
               placeholder=""
             />
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono del trabajo</label>
             <input
               nz-input
@@ -1079,12 +2037,19 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Enfermedades padecidas</label>
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="enfermedadesPadecidasPadre"
               nzPlaceHolder=""
@@ -1098,7 +2063,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Correo</label>
             <input
               nz-input
@@ -1110,7 +2083,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Vive con el niño</label>
             <nz-select
               nzSize="large"
@@ -1122,7 +2103,15 @@
               <nz-option [nzValue]="false" nzLabel="No"></nz-option>
             </nz-select>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Grado de instrucción</label>
             <nz-select
               nzSize="large"
@@ -1159,7 +2148,6 @@
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="enfermedadesEmbarazo"
               nzPlaceHolder=""
@@ -1178,7 +2166,6 @@
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="antecedentesPerinatales"
               nzPlaceHolder=""
@@ -1218,7 +2205,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Peso al nacer</label>
             <input
               nz-input
@@ -1228,7 +2223,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Talla al nacer</label>
             <input
               nz-input
@@ -1237,7 +2240,15 @@
               placeholder=""
             />
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Lloró al nacer</label>
             <nz-select
               nzSize="large"
@@ -1252,7 +2263,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿Gateó?</label>
             <nz-select
               nzSize="large"
@@ -1265,7 +2284,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿A que edad ?</label>
             <input
               nz-input
@@ -1275,7 +2302,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿A que edad caminó?</label>
             <input
               nz-input
@@ -1296,7 +2331,15 @@
         </div>
 
         <div class="mt-1" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿Posee alguno?</label>
             <nz-select
               nzSize="large"
@@ -1326,7 +2369,6 @@
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="enfermedadesNino"
               nzPlaceHolder=""
@@ -1344,7 +2386,6 @@
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="vacunasRecibidas"
               nzPlaceHolder=""
@@ -1368,7 +2409,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿Consume todo tipo de alimento?</label>
             <nz-select
               nzSize="large"
@@ -1393,7 +2442,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="2" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="2"
+            nzXs="24"
+            nzSm="6"
+            nzMd="2"
+            nzLg="2"
+            class="gutter-row"
+          >
             <label>¿Alergico?</label>
             <nz-select
               nzSize="large"
@@ -1406,7 +2463,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="4" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="4"
+            nzXs="24"
+            nzSm="10"
+            nzMd="6"
+            nzLg="4"
+            class="gutter-row"
+          >
             <label>A qué es alergico</label>
             <input
               nz-input
@@ -1416,7 +2481,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Alergico a cuales alimentos</label>
             <input
               nz-input
@@ -1440,7 +2513,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Usa lentes recetados</label>
             <nz-select
               nzSize="large"
@@ -1453,7 +2534,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Zapatos ortopédicos</label>
             <nz-select
               nzSize="large"
@@ -1466,7 +2555,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Otros</label>
             <input
               nz-input
@@ -1478,7 +2575,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Recibe tratamiento</label>
             <nz-select
               nzSize="large"
@@ -1491,7 +2596,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Nombre</label>
             <input
               nz-input
@@ -1501,7 +2614,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Motivo</label>
             <input
               nz-input
@@ -1513,7 +2634,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Médico tratante</label>
             <input
               nz-input
@@ -1522,7 +2651,15 @@
               placeholder=""
             />
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Especialidad</label>
             <input
               nz-input
@@ -1532,7 +2669,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Fecha de inicio de tratamiento</label>
             <div>
               <nz-date-picker
@@ -1550,7 +2695,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>El niño esta asegurado</label>
             <nz-select
               nzSize="large"
@@ -1563,12 +2716,19 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Tipo de seguro</label>
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="aseguradoTipo"
               nzPlaceHolder=""
@@ -1592,7 +2752,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>A que edad comenzo a hablar</label>
             <input
               nz-input
@@ -1602,7 +2770,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Duerme bien</label>
             <input
               nz-input
@@ -1612,7 +2788,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Se altera fácilmente</label>
             <nz-select
               nzSize="large"
@@ -1625,7 +2809,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Mano que usa frecuentemente</label>
             <nz-select
               nzSize="large"
@@ -1646,7 +2838,6 @@
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="necesidadesCompromiso"
               nzPlaceHolder=""
@@ -1685,7 +2876,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="2" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="2"
+            nzXs="24"
+            nzSm="6"
+            nzMd="2"
+            nzLg="2"
+            class="gutter-row"
+          >
             <label>Tipo</label>
             <nz-select
               nzSize="large"
@@ -1697,7 +2896,15 @@
               <nz-option [nzValue]="'E'" nzLabel="E"> </nz-option>
             </nz-select>
           </div>
-          <div nz-col nzSpan="4" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="4"
+            nzXs="24"
+            nzSm="10"
+            nzMd="6"
+            nzLg="4"
+            class="gutter-row"
+          >
             <label>Cedula</label>
             <input
               nz-input
@@ -1707,7 +2914,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Fecha de nacimiento</label>
             <div>
               <nz-date-picker
@@ -1723,7 +2938,15 @@
             </div>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Edad</label>
             <input
               nz-input
@@ -1733,7 +2956,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Parentesco</label>
             <input
               nz-input
@@ -1745,7 +2976,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Lugar de nacimiento</label>
             <input
               nz-input
@@ -1755,7 +2994,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Profesión u oficio</label>
             <input
               nz-input
@@ -1765,7 +3012,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Correo electrónico</label>
             <input
               nz-input
@@ -1793,7 +3048,15 @@
               </nz-option>
             </nz-select>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Ingreso económico</label>
             <input
               nz-input
@@ -1815,7 +3078,7 @@
             />
           </div>
 
-          <div nz-col nzSpan="6">
+          <div nz-col nzSpan="6" nzXs="24" nzSm="12" nzMd="8" nzLg="6">
             <label>Vive con el niño actualmente</label>
             <nz-select
               nzSize="large"
@@ -1830,7 +3093,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono casa</label>
             <input
               nz-input
@@ -1840,7 +3111,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono celular</label>
             <input
               nz-input
@@ -1850,7 +3129,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Lugar de trabajo</label>
             <input
               nz-input
@@ -1860,7 +3147,15 @@
             />
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Teléfono</label>
             <input
               nz-input
@@ -1889,7 +3184,6 @@
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="actividadesIndependientes"
               nzPlaceHolder=""
@@ -1925,7 +3219,6 @@
             <nz-select
               nzSize="large"
               [nzMaxTagCount]="3"
-              [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               formControlName="gustosNino"
               nzPlaceHolder=""
@@ -1939,7 +3232,15 @@
             </nz-select>
           </div>
 
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>Cuántas horas le dedica</label>
             <input
               nz-input
@@ -1951,7 +3252,15 @@
         </div>
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>El niño(a) se retir solo de la institución</label>
             <nz-select
               nzSize="large"
@@ -2034,7 +3343,15 @@
         <!-- TERMINAR EL FORMULARIO Y LUEGO AGREGAR LOS FORMCONTROLS EN EL TS -->
 
         <div class="mt-3" nz-row nzAlign="top" nzGutter="16">
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>El niño(a) ha reprobado en algun grado</label>
             <nz-select
               nzSize="large"
@@ -2046,7 +3363,15 @@
               <nz-option [nzValue]="false" nzLabel="No"> </nz-option>
             </nz-select>
           </div>
-          <div nz-col nzSpan="6" class="gutter-row">
+          <div
+            nz-col
+            nzSpan="6"
+            nzXs="24"
+            nzSm="12"
+            nzMd="8"
+            nzLg="6"
+            class="gutter-row"
+          >
             <label>¿Cual?</label>
             <input
               nz-input
@@ -2106,17 +3431,27 @@
         </div>
       </nz-tab>
 
-      <nz-tab nzTitle="Control de Retiro">Content of Tab Pane 3</nz-tab>
+      <nz-tab nzTitle="Control de Retiro">
+        <div class="mt-5">
+          <table-retiro
+            (sendData)="recivedRetiroData($event)"
+            [tableHeaders]="tableHeadersRetiroData"
+            [listOfData]="listRetiroData"
+          ></table-retiro>
+        </div>
+      </nz-tab>
     </nz-tabset>
   </form>
 </div>
 
-<div class="mt-5">
-  <p (click)="backStep()" class="link">Regresar</p>
+<div class="mt-5" nz-row nzAlign="middle" nzJustify="space-between">
+  <div nz-col>
+    <p (click)="backStep()" class="link">Regresar</p>
+  </div>
+
+  <div nz-col>
+    <button (click)="addStudents()" class="btn btn-primary" type="submit">
+      Guardar
+    </button>
+  </div>
 </div>
-
-<!-- TEMPLATES -->
-
-<ng-template #tagPlaceHolder let-selectedList
-  >y {{ selectedList.length }} opciones seleccionada</ng-template
->

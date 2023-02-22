@@ -58,7 +58,8 @@ export class ListStudentsComponent implements OnInit {
             edad: `${item.datosPersonales.edad}`,
             action: {
               id: 1,
-              icono: 'fas fa-search',
+              _id: item._id,
+              icono: 'fa fa-pen',
               color: 'black',
               nombre: 'search',
             },

@@ -1,0 +1,15 @@
+<nz-layout>
+  <nz-header><nav-bar></nav-bar> </nz-header>
+  <nz-layout>
+    <nz-content class="content">
+      <div class="container">
+        <details-students
+          (toAddStudents)="toAddStudents()"
+          (next)="next()"
+          (back)="back()"
+        ></details-students>
+      </div>
+    </nz-content>
+  </nz-layout>
+  <nz-footer class="footer">Virgilio Pinzon</nz-footer>
+</nz-layout>

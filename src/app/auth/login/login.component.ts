@@ -41,22 +41,26 @@ export class LoginComponent implements OnInit {
 
   login() {
     let existsToken = true;
-    this.loginService.verifyToken().subscribe((data: any) => {
-      if (data?.error === 'Token no válido') {
-        existsToken = false;
+    this.loginService.verifyTokenLogin().subscribe(
+      (data: any) => {
+        existsToken = true;
+        this.notification.create('success', 'Login', 'Ingreso exitoso');
+        this.route.navigate(['dashboard']);
+      },
+      (dataError) => {
+        if (
+          dataError.message.error?.error === 'Token no válido' ||
+          dataError.message.error?.error === 'JWT expirado' ||
+          dataError.message.error?.error === 'JWT formato no válido'
+        ) {
+          existsToken = false;
+          this.route.navigate(['/login']);
+          const username = this.formLogin.get('user')?.value;
+          const password = this.formLogin.get('password')?.value;
+          this.loginService.getNewToken(username, password);
+        }
       }
-    });
-
-    if (existsToken) {
-      this.notification.create('success', 'Login', 'Ingreso exitoso');
-
-      this.route.navigate(['dashboard']);
-    } else {
-      this.route.navigate(['/login']);
-      const username = this.formLogin.get('user')?.value;
-      const password = this.formLogin.get('password')?.value;
-      this.loginService.getNewToken(username, password);
-    }
+    );
   }
 
   register() {

@@ -11,6 +11,12 @@ import { ListStudentsComponent } from './components/list-students/list-students.
 import { DetailsStudentsComponent } from './components/details-students/details-students.component';
 import { AddStudentsComponent } from './components/add-students/add-students.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import {
+  NzNotificationModule,
+  NzNotificationService,
+} from 'ng-zorro-antd/notification';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { SectionDetailsComponent } from './components/section-details/section-details.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +26,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     ListStudentsComponent,
     DetailsStudentsComponent,
     AddStudentsComponent,
+    SectionDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +35,9 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     FormsModule,
     ReactiveFormsModule,
     NzSpinModule,
+    NzNotificationModule,
+    NzInputModule,
   ],
+  providers: [NzNotificationService],
 })
 export class DashboardModule {}

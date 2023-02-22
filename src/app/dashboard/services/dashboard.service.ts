@@ -3,34 +3,39 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { getListAllStudents, ListAllStudents } from 'src/app/helpers/Estudents';
+import {
+  getListAllStudents,
+  getNewStudent,
+  ListAllStudents,
+  Student,
+} from 'src/app/helpers/Estudents';
+import { LoginService } from 'src/app/services/login.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardService {
   apiUrl = `https://api-escuela-production.up.railway.app`;
-  token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YxNWYyZDliNzlmYzE3NmJhNjQxZmUiLCJyb2xlIjpbInByb2Zlc29yIl0sImlhdCI6MTY3NjgyMDA3OCwiZXhwIjoxNjc2OTA2NDc4fQ.Ho9dBEG5IqbOejnv8l2CSafWwyddZjq9sF_OrULiDgQ';
   isLoading = new BehaviorSubject<boolean>(false);
   pageIndex = new BehaviorSubject<number>(1);
   search = new BehaviorSubject<string>('false');
-
+  currentStudent = new BehaviorSubject<Student>(getNewStudent());
   currentListStudents = new BehaviorSubject<ListAllStudents>(
     getListAllStudents()
   );
+
   pageIndex$ = this.pageIndex.asObservable();
   isLoading$ = this.isLoading.asObservable();
   search$ = this.search.asObservable();
-
+  currentStudent$ = this.currentStudent.asObservable();
   currentListStudents$ = this.currentListStudents.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private loginService: LoginService) {}
 
   getListStudentsByName(name = '') {
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer ' + this.token,
+        Authorization: 'Bearer ' + this.loginService.getApiToken(),
       }),
     };
     return this.http
@@ -63,10 +68,25 @@ export class DashboardService {
       );
   }
 
+  updateStudent(body: any, id: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.loginService.getApiToken(),
+      }),
+    };
+    const url = `${this.apiUrl}/api/v1/alumnos/${id}`;
+
+    return this.http.patch(url, body, httpOptions).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  }
+
   loadListStudents(limit: number = 10, pageIndex: number = 1) {
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer ' + this.token,
+        Authorization: 'Bearer ' + this.loginService.getApiToken(),
       }),
     };
     return this.http
@@ -78,6 +98,22 @@ export class DashboardService {
         (data) => {
           this.currentListStudents.next(data);
           this.isLoading.next(false);
+        },
+        (error) => {}
+      );
+  }
+
+  loadCurrentStudent(id: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.loginService.getApiToken(),
+      }),
+    };
+    return this.http
+      .get<any>(`${this.apiUrl}/api/v1/alumnos/${id}`, httpOptions)
+      .subscribe(
+        (data) => {
+          this.currentStudent.next(data);
         },
         (error) => {}
       );

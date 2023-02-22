@@ -22,18 +22,20 @@
             class="editable-cell"
             [hidden]="editId === data.id"
             (click)="startEdit(data.id)"
+            [ariaPlaceholder]="'Ingrese el grado'"
           >
             {{ data.grado }}
           </div>
-          <input
-            [hidden]="editId !== data.id"
-            type="text"
-            nz-input
-            maxlength="1"
-            [(ngModel)]="data.grado"
-            (blur)="stopEdit()"
-            onkeypress="return (event.keyCode != 32 && ( (event.keyCode >= 48) && (event.keyCode <=57) ))"
-          />
+          <nz-form-control [hidden]="editId !== data.id">
+            <nz-select nzSize="large" nzPlaceHolder="" [(ngModel)]="data.grado">
+              <nz-option nzValue="1" nzLabel="1"> </nz-option>
+              <nz-option nzValue="2" nzLabel="2"> </nz-option>
+              <nz-option nzValue="3" nzLabel="3"> </nz-option>
+              <nz-option nzValue="4" nzLabel="4"> </nz-option>
+              <nz-option nzValue="5" nzLabel="5"> </nz-option>
+              <nz-option nzValue="6" nzLabel="6"> </nz-option>
+            </nz-select>
+          </nz-form-control>
         </td>
         <td>
           <div
@@ -43,13 +45,20 @@
           >
             {{ data.anoEscolar }}
           </div>
-          <input
-            [hidden]="editId !== data.id"
-            type="text"
-            nz-input
-            [(ngModel)]="data.anoEscolar"
-            (blur)="stopEdit()"
-          />
+          <nz-form-control [hidden]="editId !== data.id">
+            <nz-select
+              [(ngModel)]="data.anoEscolar"
+              (ngModelChange)="onPeriodoSelected($event)"
+              nzAllowClear
+              nzShowSearch
+            >
+              <nz-option
+                *ngFor="let periodo of periodos"
+                [nzLabel]="periodo"
+                [nzValue]="periodo"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
         </td>
         <td>
           <div
@@ -59,13 +68,24 @@
           >
             {{ data.fechaInscripcion }}
           </div>
-          <input
+
+          <div [hidden]="editId !== data.id">
+            <nz-form-control>
+              <nz-date-picker
+                [(ngModel)]="data.fechaNacimiento"
+                [nzFormat]="'yyyy/MM/dd'"
+                class="w-100"
+                nzSize="large"
+              ></nz-date-picker>
+            </nz-form-control>
+          </div>
+          <!-- <input
             [hidden]="editId !== data.id"
             type="text"
             nz-input
             [(ngModel)]="data.fechaInscripcion"
             (blur)="stopEdit()"
-          />
+          /> -->
         </td>
         <td>
           <div

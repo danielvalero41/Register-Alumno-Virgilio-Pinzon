@@ -10,8 +10,20 @@ export class TableCustomComponent implements OnInit {
   @Input() tableHeaders = [];
   @Output() sendData = new EventEmitter<any>();
   i = 0;
+  selectedPeriodo: string;
+  periodos: string[] = [];
   editId: string | null = null;
-  constructor() {}
+
+  constructor() {
+    const currentYear = 2000;
+    for (let i = currentYear; i <= 2030; i++) {
+      this.periodos.push(`${i}-${i + 1}`);
+    }
+  }
+
+  onPeriodoSelected(periodo: string) {
+    this.selectedPeriodo = periodo;
+  }
 
   startEdit(id: string): void {
     this.editId = id;

@@ -13,10 +13,6 @@ export class AppComponent implements OnInit {
   constructor(public loginService: LoginService, public route: Router) {}
 
   ngOnInit(): void {
-    this.loginService.verifyToken().subscribe((data: any) => {
-      if (data?.error === 'Token no válido') {
-        this.route.navigate(['/login']);
-      }
-    });
+    this.loginService.verifyToken();
   }
 }
